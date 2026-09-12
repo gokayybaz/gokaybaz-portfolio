@@ -92,7 +92,7 @@ export function Hero() {
     <section className="relative flex min-h-[calc(100svh)] items-center justify-center overflow-hidden">
       <NetworkCanvas />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/40 via-transparent to-ink" />
-      <div className="relative z-10 px-6 text-center">
+      <div className="relative z-10 px-6 pt-24 text-center sm:pt-16">
         <Avatar />
         <p className="font-mono text-sm text-term">
           {typed}
