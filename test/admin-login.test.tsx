@@ -36,6 +36,6 @@ test('successful login opens the admin layout', async () => {
   )
   renderAdmin()
   await waitFor(() => expect(screen.getByText('Admin Panel')).toBeInTheDocument())
-  expect(screen.getByText('Projeler')).toBeInTheDocument()
+  expect(screen.getAllByText('Projeler').length).toBeGreaterThan(0)
   vi.unstubAllGlobals()
 })

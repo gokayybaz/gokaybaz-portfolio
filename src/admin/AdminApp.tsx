@@ -10,6 +10,7 @@ import { SkillsEditor } from './sections/SkillsEditor'
 import { EducationEditor } from './sections/EducationEditor'
 import { SiteEditor } from './sections/SiteEditor'
 import { AboutEditor } from './sections/AboutEditor'
+import { AdminTabBar } from './AdminTabBar'
 
 const PROJECT_SECTION = { id: 'projects', label: 'Projeler' } as const
 
@@ -101,7 +102,7 @@ export function AdminApp() {
       <header className="sticky top-0 z-10 border-b border-line bg-ink/95 backdrop-blur">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-4 px-6 py-4">
           <span className="font-mono text-sm text-term">~/gokaybaz/admin</span>
-          <nav className="flex flex-wrap gap-3 font-mono text-xs">
+          <nav className="hidden flex-wrap gap-3 font-mono text-xs md:flex">
             {SECTIONS.map((s) => (
               <NavLink
                 key={s.id}
@@ -130,7 +131,7 @@ export function AdminApp() {
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-5xl px-6 py-10">
+      <main className="mx-auto max-w-5xl px-6 pb-24 pt-10 md:pb-10">
         <h1 className="text-2xl font-bold text-paper">Admin Panel</h1>
         {missing && missing.length > 0 && (
           <div className="mt-4 border border-red-400 bg-red-400/5 p-4">
@@ -154,6 +155,7 @@ export function AdminApp() {
           <Route path="about" element={<AboutEditor doc={doc} setDoc={setDoc} />} />
         </Routes>
       </main>
+      <AdminTabBar sections={SECTIONS} />
     </div>
   )
 }
