@@ -16,6 +16,7 @@ beforeAll(async () => {
     dataFile: path.join(dir, 'content.json'),
     passwordHash,
     jwtSecret: 'test-secret',
+    uploadsDir: path.join(dir, 'uploads'),
   })
   agent = request.agent(app)
 })

@@ -18,6 +18,7 @@ async function makeApp() {
     dataFile: path.join(dir, 'content.json'),
     passwordHash: PASSWORD_HASH,
     jwtSecret: 'test-secret',
+    uploadsDir: path.join(dir, 'uploads'),
   }
   return createApp(config)
 }
@@ -48,7 +49,7 @@ test('PUT /api/admin/content persists a valid document', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'gk-put-'))
   const dataFile = path.join(dir, 'content.json')
   const passwordHash = await bcrypt.hash('password', 10)
-  const app = createApp({ dataFile, passwordHash, jwtSecret: 's' })
+  const app = createApp({ dataFile, passwordHash, jwtSecret: 's', uploadsDir: path.join(dir, 'uploads') })
   const agent = request.agent(app)
   await agent.post('/api/admin/login').send({ password: 'password' })
 

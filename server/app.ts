@@ -2,6 +2,9 @@ import bcrypt from 'bcryptjs'
 import cookieParser from 'cookie-parser'
 import express, { type NextFunction, type Request, type Response } from 'express'
 import jwt from 'jsonwebtoken'
+import multer from 'multer'
+import path from 'node:path'
+import { randomUUID } from 'node:crypto'
 import { contentSchema } from './schema'
 import { createStore } from './store'
 
@@ -9,13 +12,33 @@ export interface AppConfig {
   dataFile: string
   passwordHash: string
   jwtSecret: string
+  uploadsDir: string
 }
+
+const IMAGE_MIMES = ['image/png', 'image/jpeg', 'image/webp', 'image/gif']
 
 export function createApp(config: AppConfig) {
   const store = createStore(config.dataFile)
   const app = express()
   app.use(express.json({ limit: '2mb' }))
   app.use(cookieParser())
+
+  const upload = multer({
+    storage: multer.diskStorage({
+      destination: config.uploadsDir,
+      filename: (_req, file, cb) => {
+        const ext = path.extname(file.originalname).toLowerCase() || '.png'
+        cb(null, `${randomUUID()}${ext}`)
+      },
+    }),
+    limits: { fileSize: 5 * 1024 * 1024 },
+    fileFilter: (_req, file, cb) => {
+      if (IMAGE_MIMES.includes(file.mimetype)) return cb(null, true)
+      cb(new Error('INVALID_TYPE'))
+    },
+  })
+
+  app.use('/uploads', express.static(config.uploadsDir, { fallthrough: false }))
 
   app.get('/api/content', async (_req, res) => {
     try {
@@ -86,6 +109,18 @@ export function createApp(config: AppConfig) {
     }
     await store.write(parsed.data)
     res.json(parsed.data)
+  })
+
+  app.post('/api/admin/upload', requireAuth, (req, res) => {
+    upload.single('file')(req, res, (err) => {
+      if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
+        return res.status(413).json({ error: 'file too large' })
+      }
+      if (err) return res.status(400).json({ error: 'invalid file' })
+      const file = req.file
+      if (!file) return res.status(400).json({ error: 'no file provided' })
+      res.json({ url: `/uploads/${file.filename}` })
+    })
   })
 
   return app

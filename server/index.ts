@@ -14,6 +14,7 @@ const app = createApp({
   dataFile: process.env.CONTENT_FILE ?? path.join(__dirname, 'data', 'content.json'),
   passwordHash,
   jwtSecret: process.env.JWT_SECRET ?? 'dev-secret-change-me',
+  uploadsDir: path.join(__dirname, 'data', 'uploads'),
 })
 
 app.use(express.static(distDir))
