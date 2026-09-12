@@ -90,7 +90,7 @@ export function MarkdownInput({
             aria-label={action.title}
             title={action.title}
             onClick={() => applyAction(action)}
-            className="px-1.5 py-0.5 font-mono text-xs text-paper-dim transition-colors hover:text-term"
+            className="min-h-9 min-w-9 px-1.5 font-mono text-xs text-paper-dim transition-colors hover:text-term"
           >
             {action.label}
           </button>
@@ -101,7 +101,7 @@ export function MarkdownInput({
           title="Görsel ekle"
           disabled={uploading}
           onClick={() => fileRef.current?.click()}
-          className="ml-auto px-1.5 py-0.5 font-mono text-xs text-paper-dim transition-colors hover:text-term disabled:opacity-50"
+          className="ml-auto min-h-9 min-w-9 px-1.5 font-mono text-xs text-paper-dim transition-colors hover:text-term disabled:opacity-50"
         >
           {uploading ? '…' : '🖼'}
         </button>

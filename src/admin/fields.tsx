@@ -165,7 +165,7 @@ export function ArrayControls({
           type="button"
           onClick={onUp}
           aria-label="Yukarı taşı"
-          className="border border-line px-2 py-0.5 font-mono text-xs text-paper-dim hover:text-term"
+          className="flex min-h-11 min-w-11 items-center justify-center border border-line px-2 font-mono text-xs text-paper-dim hover:text-term"
         >
           ↑
         </button>
@@ -175,7 +175,7 @@ export function ArrayControls({
           type="button"
           onClick={onDown}
           aria-label="Aşağı taşı"
-          className="border border-line px-2 py-0.5 font-mono text-xs text-paper-dim hover:text-term"
+          className="flex min-h-11 min-w-11 items-center justify-center border border-line px-2 font-mono text-xs text-paper-dim hover:text-term"
         >
           ↓
         </button>
@@ -184,7 +184,7 @@ export function ArrayControls({
         type="button"
         onClick={onRemove}
         aria-label="Sil"
-        className="border border-line px-2 py-0.5 font-mono text-xs text-red-400 hover:border-red-400"
+        className="flex min-h-11 min-w-11 items-center justify-center border border-line px-2 font-mono text-xs text-red-400 hover:border-red-400"
       >
         ✕
       </button>

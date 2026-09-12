@@ -121,7 +121,7 @@ export function AdminApp() {
             <button
               onClick={handleSave}
               disabled={saving}
-              className="border border-term bg-term/10 px-3 py-1.5 font-mono text-xs text-term transition-colors hover:bg-term/20 disabled:opacity-50"
+              className="min-h-11 border border-term bg-term/10 px-3 font-mono text-xs text-term transition-colors hover:bg-term/20 disabled:opacity-50"
             >
               {saving ? 'Kaydediliyor…' : 'Kaydet'}
             </button>
