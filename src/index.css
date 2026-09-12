@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0a0e14;
+  --color-ink-soft: #11161d;
+  --color-paper: #e6e1d5;
+  --color-paper-dim: #8a8578;
+  --color-term: #4ade80;
+  --color-amber: #fbbf24;
+  --color-line: #1e2630;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  @apply bg-ink text-paper font-display antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+}
