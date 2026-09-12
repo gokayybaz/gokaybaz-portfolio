@@ -7,7 +7,7 @@ export function Education() {
   const { education } = useContent()
 
   return (
-    <section id="education" className="mx-auto max-w-5xl px-6 py-24">
+    <section id="education" className="mx-auto max-w-5xl px-6 py-16 md:py-24">
       <Reveal>
         <h2 className="font-mono text-sm text-term">## {t({ tr: 'Eğitim', en: 'Education' })}</h2>
       </Reveal>

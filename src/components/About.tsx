@@ -7,7 +7,7 @@ export function About() {
   const { t } = useLanguage()
   const { profile: about, aboutTags } = useContent()
   return (
-    <section id="about" className="mx-auto max-w-5xl px-6 py-24">
+    <section id="about" className="mx-auto max-w-5xl px-6 py-16 md:py-24">
       <Reveal>
         <h2 className="font-mono text-sm text-term">## {t({ tr: 'Profil', en: 'Profile' })}</h2>
       </Reveal>

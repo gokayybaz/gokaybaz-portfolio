@@ -8,7 +8,7 @@ export function Projects() {
   const { projects } = useContent()
   const ordered = [...projects].sort((a, b) => Number(b.featured ?? false) - Number(a.featured ?? false))
   return (
-    <section id="projects" className="mx-auto max-w-5xl px-6 py-24">
+    <section id="projects" className="mx-auto max-w-5xl px-6 py-16 md:py-24">
       <Reveal>
         <h2 className="font-mono text-sm text-term">## {t({ tr: 'Projeler', en: 'Projects' })}</h2>
       </Reveal>

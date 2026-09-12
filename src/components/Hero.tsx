@@ -12,7 +12,7 @@ export function Avatar() {
   if (missing) {
     return (
       <div
-        className="mx-auto mb-6 flex h-44 w-44 items-center justify-center rounded-full border-2 border-dashed border-line font-mono text-2xl text-term sm:h-48 sm:w-48"
+        className="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full border-2 border-dashed border-line font-mono text-xl text-term sm:h-48 sm:w-48 sm:text-2xl"
         aria-hidden="true"
       >
         GB
@@ -30,7 +30,7 @@ export function Avatar() {
           setMissing(true)
         }
       }}
-      className="mx-auto mb-6 h-44 w-44 rounded-full border border-line object-cover sm:h-48 sm:w-48"
+      className="mx-auto mb-6 h-32 w-32 rounded-full border border-line object-cover sm:h-48 sm:w-48"
     />
   )
 }
@@ -89,7 +89,7 @@ export function Hero() {
   ]
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[calc(100svh)] items-center justify-center overflow-hidden">
       <NetworkCanvas />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/40 via-transparent to-ink" />
       <div className="relative z-10 px-6 text-center">
@@ -98,7 +98,7 @@ export function Hero() {
           {typed}
           <span className="animate-pulse">▋</span>
         </p>
-        <h1 className="mt-6 font-mono text-5xl font-bold tracking-tight text-paper [word-spacing:-0.2em] sm:text-7xl">
+        <h1 className="mt-6 font-mono text-4xl font-bold tracking-tight text-paper [word-spacing:-0.2em] sm:text-7xl">
           {site.name}
         </h1>
         <p className="mt-4 text-lg text-paper-dim sm:text-xl">{t(site.title)}</p>

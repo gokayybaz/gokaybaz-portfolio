@@ -13,7 +13,7 @@ export function Footer() {
   ]
   return (
     <footer id="contact" className="border-t border-line">
-      <div className="mx-auto max-w-5xl px-6 py-24">
+      <div className="mx-auto max-w-5xl px-6 py-16 md:py-24">
         <Reveal>
           <h2 className="font-mono text-sm text-term">## {t({ tr: 'İletişim', en: 'Contact' })}</h2>
           <p className="mt-6 text-xl text-paper-dim">
@@ -21,7 +21,7 @@ export function Footer() {
           </p>
           <a
             href={site.socials.email}
-            className="mt-2 inline-block font-mono text-2xl text-term hover:underline sm:text-4xl"
+            className="mt-2 inline-block break-all font-mono text-xl text-term hover:underline sm:text-4xl"
           >
             gokaybaz2000@gmail.com
           </a>

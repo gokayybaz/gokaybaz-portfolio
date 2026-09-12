@@ -7,7 +7,7 @@ export function Skills() {
   const { skillGroups } = useContent()
 
   return (
-    <section id="skills" className="mx-auto max-w-5xl px-6 py-24">
+    <section id="skills" className="mx-auto max-w-5xl px-6 py-16 md:py-24">
       <Reveal>
         <h2 className="font-mono text-sm text-term">## {t({ tr: 'Teknik yetenekler', en: 'Technical skills' })}</h2>
       </Reveal>

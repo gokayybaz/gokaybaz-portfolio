@@ -6,7 +6,7 @@ export function BlogTeaser() {
   const { t } = useLanguage()
   const { site } = useContent()
   return (
-    <section id="blog" className="mx-auto max-w-5xl px-6 py-24">
+    <section id="blog" className="mx-auto max-w-5xl px-6 py-16 md:py-24">
       <Reveal>
         <div className="border border-dashed border-line p-10 text-center">
           <p className="font-mono text-sm text-term">
