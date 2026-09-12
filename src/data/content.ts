@@ -84,12 +84,20 @@ export const site: SiteContent = {
 }
 
 export const profile: Dict = {
-  tr: `Bir üretim tesisinin BT ve OT altyapısını tek başıma kurup işletiyor, aynı altyapının üzerinde çalışan yazılımları da uçtan uca geliştiriyorum. Sunucu sanallaştırma, kurumsal ağ ve güvenlik, yedekleme ve felaket kurtarma tarafında operasyonel sorumluluk taşırken; aynı sistemlerden Modbus ve API üzerinden veri toplayan, ERP ile senkron çalışan üretim izleme, e-ticaret ve iç portal uygulamalarını Next.js ve Node.js ile üretime aldım.
+  tr: `Üretim yapan bir şirketin günlük işlerinin aksamadan devam etmesi için gereken altyapıyı kuruyor, işletiyor ve bu altyapının üzerinde çalışan yazılımları geliştiriyorum. Amacım yalnızca sistemi çalışır durumda tutmak değil; ekiplerin daha hızlı bilgiye ulaşmasını, operasyonu daha kolay takip etmesini ve tekrar eden işleri azaltmasını sağlamak.
 
-En güçlü olduğum alan, altyapı ile yazılım arasındaki sınırın kaybolduğu problemler: endüstriyel veri toplama, ERP entegrasyonu ve uçtan uca sistem izleme. Adana'da yaşıyorum; Türkiye genelinde yer değişikliğine ve hibrit/uzaktan çalışma modellerine açığım.`,
-  en: `I independently build and operate the complete IT and OT infrastructure of a manufacturing facility, while also developing the software that runs on top of it end to end. I own operations across server virtualization, enterprise networking and security, backup and disaster recovery; and I have taken production monitoring, e-commerce and internal portal applications from the same systems to production using data collected over Modbus and APIs, with Next.js and Node.js.
+## Nasıl çalışıyorum?
 
-My strongest area is where infrastructure and software meet: industrial data collection, ERP integration and end-to-end systems monitoring. I am based in Adana, Türkiye and open to relocation, hybrid and remote work.`,
+Altyapı, yazılım ve operasyonu ayrı başlıklar olarak değil, aynı problemin parçaları olarak ele alıyorum. Bir ihtiyacı önce sahadaki gerçek akışı anlayarak tanımlıyor, ardından güvenilir bir altyapı ve kullanılabilir bir uygulama ile çözüyorum. Üretim takibi, e-ticaret, ERP bağlantıları ve kurum içi araçlarda uçtan uca sorumluluk aldım.
+
+Adana'da yaşıyorum; Türkiye genelinde yer değişikliğine ve hibrit/uzaktan çalışma modellerine açığım.`,
+  en: `I build and operate the infrastructure that keeps a manufacturing business running, while also developing the software that works on top of it. My goal is not only to keep systems online; it is to help teams find information faster, follow operations more easily and reduce repetitive work.
+
+## How I work
+
+I see infrastructure, software and operations as parts of the same problem rather than separate disciplines. I start by understanding the real workflow on the ground, then solve it with reliable infrastructure and usable software. I have taken end-to-end responsibility for production monitoring, e-commerce, ERP connections and internal business tools.
+
+I am based in Adana, Türkiye and open to relocation, hybrid and remote work.`,
 }
 
 export const about = profile
@@ -156,12 +164,46 @@ export const projects: Project[] = [
     featured: true,
     metric: { tr: '10 aktif kullanıcı · 4 departman', en: '10 active users · 4 departments' },
     description: {
-      tr: 'Üretim dijitalleşme platformu: Modbus ve PLC verilerinden ERP senkronizasyonuna, kalite formlarından saha tablet uygulamasına kadar tek portal.',
-      en: 'A production digitalization platform covering Modbus and PLC data, ERP synchronization, quality forms and a field tablet app in one portal.',
+      tr: 'Üretim, kalite, stok ve saha ekiplerinin aynı bilgiye ulaşmasını sağlayan; fabrikanın günlük operasyonunu tek yerde toplayan iç platform.',
+      en: 'An internal platform that brings production, quality, stock and field operations together so teams can work from the same information.',
     },
     detail: {
-      tr: 'Kazan ve ortam sensörlerinden Modbus TCP/IP gateway\'ler üzerinden, üretim hatlarındaki HMI\'lardan ise PLC verisi olarak periyodik veri toplayan ingest servisleri geliştirdim. Verileri TimescaleDB üzerinde saklayıp portalda zaman serisi olarak görselleştiriyorum. Hammadde girişini QR kod ile fişleştirerek ERP\'de doğrudan üretim emrine dönüşebilir hale getirdim; dolum hattı verisiyle oluşan üretim kayıtlarını ERP verisiyle karşılaştırarak son ürün fire raporlaması sağladım. Kalite kontrol formlarını AcroForm ile dijitalleştirdim; JSONB olarak saklanan formlar talep anında PDF olarak render ediliyor. PDKS entegrasyonu, lot/seri izlenebilirliği, fotoğraf/video destekli Expo tablet uygulaması ve ham Excel verisini yönetici raporuna dönüştüren otomasyonlar aynı platformda birleşiyor.',
-      en: 'I built ingest services that periodically collect data from boiler and environmental sensors through Modbus TCP/IP gateways and from production-line HMIs as PLC data. The data is stored in TimescaleDB and visualized as time series in the portal. I turned raw-material intake into QR-based records that can become production orders in the ERP, and compare filling-line production records with ERP data for finished-product waste reporting. Quality forms are digitized with AcroForm, stored as JSONB and rendered to PDF on demand. PDKS integration, lot/serial traceability, a photo/video-enabled Expo tablet app and automation that turns raw Excel data into executive reports all live in the same platform.',
+      tr: `## Problem
+
+Üretim, kalite ve saha süreçleri farklı araçlarda ilerlediğinde ekiplerin aynı resmi görmesi zorlaşıyordu. Veriye ulaşmak, formları takip etmek ve üretim sonuçlarını karşılaştırmak zaman alıyordu.
+
+## Ne yaptım?
+
+Üretim verilerini, hammadde girişini, kalite kontrollerini, personel takibini ve saha tablet kullanımını tek portalda birleştirdim. Böylece ekipler günlük operasyonu farklı sistemler arasında kaybolmadan takip edebiliyor.
+
+## Sonuç
+
+- Üretim ve kalite bilgileri tek panelde görünür hale geldi
+- Hammadde ve üretim kayıtları daha düzenli takip edilebildi
+- Kalite formları dijitalleşti ve gerektiğinde PDF olarak alınabilir oldu
+- Saha ekipleri fotoğraf ve video destekli tablet uygulaması kullanabiliyor
+
+## Teknik yaklaşım
+
+Sensör ve makine verileri Modbus TCP/IP ve PLC/HMI bağlantılarıyla toplandı. Veriler TimescaleDB üzerinde zaman serisi olarak saklandı; ERP senkronizasyonu, PDKS, QR kodlu hammadde girişi ve Expo tablet uygulaması aynı platformda birleştirildi.`,
+      en: `## The problem
+
+When production, quality and field workflows live in separate tools, teams struggle to see the same picture. Finding data, following forms and comparing production results took too much time.
+
+## What I built
+
+I brought production data, raw-material intake, quality checks, attendance tracking and field tablet workflows into one portal. Teams can now follow daily operations without moving between disconnected systems.
+
+## The result
+
+- Production and quality information became visible in one place
+- Raw-material and production records became easier to follow
+- Quality forms became digital and can be exported as PDFs when needed
+- Field teams can use a photo- and video-enabled tablet application
+
+## Technical approach
+
+Sensor and machine data is collected through Modbus TCP/IP and PLC/HMI connections. Data is stored as time series in TimescaleDB, while ERP synchronization, PDKS, QR-based raw-material intake and the Expo tablet app share the same platform.`,
     },
     highlights: {
       tr: [
@@ -189,12 +231,46 @@ export const projects: Project[] = [
     demo: 'https://shop.binbogabal.com.tr',
     metric: { tr: 'Aylık ~100 sipariş · 30 ürün / 20 varyant', en: '~100 monthly orders · 30 products / 20 variants' },
     description: {
-      tr: 'shop.binbogabal.com.tr: tasarımdan üretime, ödeme ve ERP entegrasyonuna kadar tek geliştirici tarafından kurulan e-ticaret platformu.',
-      en: 'shop.binbogabal.com.tr: an e-commerce platform built by one developer from design to production, including payments and ERP integration.',
+      tr: 'Binboğa Bal için müşterilerin kolayca alışveriş yapabildiği, siparişten operasyona kadar şirketin günlük satış sürecini destekleyen e-ticaret platformu.',
+      en: 'An e-commerce platform for Binboğa Bal that makes shopping simple for customers and supports the company from order to fulfillment.',
     },
     detail: {
-      tr: 'Vitrin, sepet, misafir/üyelik akışı ve Client-to-Bank mimarili QNB Pay ödeme entegrasyonunu içeren sistemi sıfırdan geliştirdim. Ürün, kategori, sipariş, müşteri, kargo, kampanya/kupon, içerik ve sayfa yönetimini kapsayan; koşul-aksiyon mantığına sahip yönetim paneli oluşturdum. Ürün, stok ve siparişleri ERP ile çift yönlü senkronize ettim; e-posta bazlı cari kart eşleştirme ve otomatik cari kart oluşturma kurdum. Dinamik sitemap ve llms.txt, LLM bot erişim logları, meta yönetimi ve AI destekli optimizasyon kuyruğundan oluşan kod müdahalesiz SEO/GEO modülü ekledim. RBAC, 2FA, audit log, risk uyarıları ve Telegram bildirimleriyle sistemi operasyonel olarak izlenebilir hale getirdim.',
-      en: 'I built the system from scratch with a storefront, cart, guest/member flows and a Client-to-Bank QNB Pay integration. The admin panel covers products, categories, orders, customers, shipping, campaigns/coupons, content and pages, with a condition-action campaign engine. Products, inventory and orders sync bidirectionally with the ERP, including email-based current-account matching and automatic account creation. I added a no-code SEO/GEO module with dynamic sitemaps and llms.txt, LLM bot access logs, meta management and an AI-assisted optimization queue. RBAC, 2FA, audit logs, risk alerts and Telegram notifications make operations traceable.',
+      tr: `## Problem
+
+Şirketin online satış kanalının müşteriye güven veren, kullanımı kolay ve operasyon ekibinin yönetebileceği bir yapıya ihtiyacı vardı.
+
+## Ne yaptım?
+
+Ürünleri keşfetme, sepet, üyelik, ödeme, kargo ve sipariş takibini baştan sona tasarlayıp geliştirdim. Ekip için ürün, stok, sipariş, kampanya ve içerik yönetimini tek panelde topladım.
+
+## Sonuç
+
+- Müşteriler ürünleri inceleyip güvenli şekilde sipariş verebiliyor
+- Ekip ürün ve sipariş operasyonunu tek panelden yönetebiliyor
+- Stok ve sipariş bilgileri şirket içindeki sistemlerle eşleşiyor
+- SEO ve içerik güncellemeleri kod değişikliği gerektirmeden yapılabiliyor
+
+## Teknik yaklaşım
+
+Platform Next.js, PostgreSQL ve Prisma ile geliştirildi. QNB Pay ödeme, ERP ile çift yönlü ürün/stok/sipariş senkronizasyonu, RBAC, 2FA, audit log ve Telegram bildirimleri uygulamanın operasyonel temelini oluşturuyor.`,
+      en: `## The problem
+
+The company needed an online sales channel that felt trustworthy to customers, was easy to use and could be managed by the operations team.
+
+## What I built
+
+I designed and built the full journey from product discovery and cart to membership, payment, shipping and order tracking. I brought product, stock, order, campaign and content management into one panel for the team.
+
+## The result
+
+- Customers can browse products and place orders securely
+- The team can manage product and order operations from one panel
+- Stock and order information stays aligned with internal systems
+- SEO and content updates no longer require code changes
+
+## Technical approach
+
+The platform was built with Next.js, PostgreSQL and Prisma. QNB Pay payments, bidirectional ERP synchronization for products/stock/orders, RBAC, 2FA, audit logs and Telegram alerts form its operational foundation.`,
     },
     highlights: {
       tr: [
@@ -220,12 +296,44 @@ export const projects: Project[] = [
     period: { tr: '2026', en: '2026' },
     metric: { tr: 'Yıllık ~5.000 USD ek lisans maliyeti kaldırıldı', en: 'Removed ~5,000 USD in annual extra license cost' },
     description: {
-      tr: 'Dia ERP API için merkezî oturum, endpoint dönüşümü ve birden fazla iç projeye güvenli erişim sağlayan entegrasyon katmanı.',
-      en: 'An integration layer for Dia ERP API with centralized sessions, endpoint transformation and secure access for multiple internal projects.',
+      tr: 'Farklı iç uygulamaların şirket verilerine güvenli ve tutarlı şekilde ulaşmasını sağlayan ortak ERP bağlantı katmanı.',
+      en: 'A shared ERP connection layer that lets internal applications access company data securely and consistently.',
     },
     detail: {
-      tr: 'Tek servis kullanıcısıyla sınırlı ERP API\'sini birden fazla iç projeye açmak için oturumu merkezî olarak yöneten ve istek başında otomatik login yapan bir proxy servisi tasarladım. ERP\'nin endpoint yapısını e-ticaret ve iç portalın ihtiyaçlarına göre endpoint sözleşmesine dönüştürdüm. Retry pattern ve süreç koruma mekanizmalarıyla Node process\'inin kesintisiz çalışmasını sağlıyor; lot listesi, iş emri, personel ve stok kartlarını periyodik olarak iç portal veritabanına aktarıyorum.',
-      en: 'I designed a proxy service that centralizes the session for an ERP API limited to one service user, automatically logging in when a request starts so multiple internal projects can use it. I transform the ERP endpoint structure into contracts designed for the e-commerce platform and internal portal. Retry patterns and process safeguards keep the Node process running continuously while lot lists, work orders, employees and stock cards are periodically synchronized into the portal database.',
+      tr: `## Problem
+
+ERP sistemi tek bir servis kullanıcısıyla sınırlı erişim sunuyordu. Birden fazla iç uygulamanın aynı veriye güvenli ve tutarlı biçimde ulaşması gerekiyordu.
+
+## Ne yaptım?
+
+İç uygulamalar ile ERP arasında ortak bir bağlantı katmanı oluşturdum. Bu katman oturum yönetimini, veri dönüşümlerini ve geçici bağlantı sorunlarında tekrar denemeleri merkezi olarak yönetiyor.
+
+## Sonuç
+
+- Birden fazla uygulama ERP'ye ortak bir yapı üzerinden bağlanabiliyor
+- Projeler arasında veri formatı ve erişim davranışı tutarlı hale geldi
+- ERP erişimi tek tek uygulamalara dağılmadı
+
+## Teknik yaklaşım
+
+Node.js tabanlı servis; merkezi oturum, endpoint dönüşümü, retry mekanizmaları ve WireGuard üzerinden izole erişim sağlıyor. Lot, iş emri, personel ve stok verileri iç portal ile periyodik olarak eşleştiriliyor.`,
+      en: `## The problem
+
+The ERP system exposed limited access through a single service user. Multiple internal applications needed to reach the same data securely and consistently.
+
+## What I built
+
+I created a shared connection layer between internal applications and the ERP. It centrally manages sessions, data transformations and retries when temporary connection problems occur.
+
+## The result
+
+- Multiple applications can connect through one consistent interface
+- Data formats and access behavior became consistent across projects
+- ERP access no longer had to be duplicated inside every application
+
+## Technical approach
+
+The Node.js service provides centralized sessions, endpoint transformation, retry mechanisms and isolated access over WireGuard. Lot, work-order, employee and stock data is synchronized with the internal portal periodically.`,
     },
     highlights: {
       tr: ['Tek servis kullanıcısıyla çoklu proje erişimi', 'ERP endpoint dönüşüm katmanı', 'Retry ve process koruma mekanizmaları', 'WireGuard üzerinden izole ERP erişimi'],
@@ -239,12 +347,46 @@ export const projects: Project[] = [
     period: { tr: '2026 – devam', en: '2026 – ongoing' },
     metric: { tr: '6 cihaz · 10 servis tek panelden izleniyor', en: '6 devices · 10 services monitored from one panel' },
     description: {
-      tr: 'Yedekleme, ağ omurgası, güvenlik duvarı, CCTV, envanter ve personel süreçlerini tek panelde birleştiren iç platform.',
-      en: 'An internal platform unifying backup, network, firewall, CCTV, inventory and employee operations in one panel.',
+      tr: 'BT ekibinin altyapı durumunu, cihazlarını ve personel süreçlerini tek ekrandan takip etmesini sağlayan operasyon paneli.',
+      en: 'An operations panel that gives the IT team one place to follow infrastructure health, devices and employee processes.',
     },
     detail: {
-      tr: 'Acronis Cyber Protect, Synology CGI, Ruijie Cloud Pro, FortiGate REST, Hikvision ve Dahua API\'lerinden veri toplayarak altyapı durumunu tek panelde birleştirdim. API\'si olmayan cihazlar için SNMP, erişilebilirlik için ICMP/TCP ping ve kamera canlı izleme için RTSP servisleri geliştirdim. Dış IP sorgusuyla FortiGate\'in aktif WAN çıkışını anlık izlenebilir hale getirdim. Envanter ve personel modülleriyle zimmet süreçlerini dijitalleştiriyor, AcroForm ile resmî zimmet evraklarını otomatik üretiyorum.',
-      en: 'I unified infrastructure status in one panel by collecting data from Acronis Cyber Protect, Synology CGI, Ruijie Cloud Pro, FortiGate REST, Hikvision and Dahua APIs. I built SNMP for devices without APIs, ICMP/TCP ping for availability and RTSP for live camera viewing. An external IP lookup makes the active FortiGate WAN exit visible in real time. Inventory and employee modules digitize asset assignment, with official assignment documents generated automatically through AcroForm.',
+      tr: `## Problem
+
+Yedekleme, ağ cihazları, güvenlik duvarı, kameralar ve envanter farklı ekranlardan takip ediliyordu. Sorunları erken görmek ve cihaz/personel kayıtlarına ulaşmak gereğinden fazla zaman alıyordu.
+
+## Ne yaptım?
+
+Altyapı sağlığını, cihaz durumunu, kamera erişimini, envanteri ve personel zimmetlerini tek operasyon panelinde topladım.
+
+## Sonuç
+
+- BT ekibi kritik servisleri tek panelden izleyebiliyor
+- Cihaz ve personel zimmetleri daha düzenli takip ediliyor
+- Yedekleme, ağ ve kamera sorunları daha hızlı fark ediliyor
+- Resmî zimmet belgeleri otomatik üretilebiliyor
+
+## Teknik yaklaşım
+
+Panel farklı üreticilerin API'lerinden veri topluyor; API sunmayan cihazlar için SNMP, erişilebilirlik kontrolü için ICMP/TCP ve kamera izleme için RTSP kullanıyor. Envanter ve personel modülleri Next.js, Node.js ve MongoDB tabanlı servislerle çalışıyor.`,
+      en: `## The problem
+
+Backups, network devices, firewalls, cameras and inventory were followed from separate screens. Detecting problems early and finding device or employee records took more time than it should.
+
+## What I built
+
+I brought infrastructure health, device status, camera access, inventory and employee assignments into one operations panel.
+
+## The result
+
+- The IT team can monitor critical services from one place
+- Device and employee assignments are easier to track
+- Backup, network and camera issues are noticed sooner
+- Official assignment documents can be generated automatically
+
+## Technical approach
+
+The panel collects data from vendor APIs, uses SNMP for devices without APIs, ICMP/TCP for availability checks and RTSP for camera viewing. Inventory and employee modules run on Next.js, Node.js and MongoDB-based services.`,
     },
     highlights: {
       tr: ['Acronis, Synology, Ruijie, FortiGate ve CCTV API entegrasyonları', 'SNMP, ICMP/TCP ve RTSP servisleri', 'Envanter, personel ve dijital zimmet süreçleri', 'NextAuth ile korunan mikroservis tabanlı panel'],
@@ -261,12 +403,46 @@ export const projects: Project[] = [
     demo: 'https://gokayybaz.github.io/bazntms/',
     metric: { tr: 'v1.3.0 · 5.000 agent kapasitesi · MIT', en: 'v1.3.0 · capacity for 5,000 agents · MIT' },
     description: {
-      tr: 'Paket seviyesinde izleme, akış toplama ve 5651 uyumlu imzalı logları tek binary ile sunan ağ trafiği izleme platformu.',
-      en: 'A network traffic monitoring platform for packet-level visibility, flow collection and 5651-compliant signed logs in one binary.',
+      tr: 'Ekiplerin ağda neler olduğunu görmesini, sorunları daha hızlı bulmasını ve güvenlik kayıtlarını düzenli tutmasını sağlayan ağ görünürlük platformu.',
+      en: 'A network visibility platform that helps teams understand traffic, find problems faster and keep security records organized.',
     },
     detail: {
-      tr: 'bazNTMS, tek makineden 5.000 agent\'a kadar büyüyen self-hosted bir ağ görünürlük platformu. Linux\'ta eBPF, Windows\'ta ETW ve pcap/Npcap ile süreç atıflı paket yakalama; NetFlow v5/v9, IPFIX ve sFlow toplama; SNMPv3, syslog ve FortiGate REST entegrasyonu sunuyor. Agent-hub iletişimi mTLS ile korunuyor; RBAC, OIDC SSO, hash-zincirli append-only audit log, Splunk/QRadar/ServiceNow/ArcSight konektörleri ve 5651 uyumlu RFC 3161 zaman damgalı delil paketleri bulunuyor. SQLite\'tan PostgreSQL + TimescaleDB\'ye geçiş, NATS JetStream ingest hattı, Helm ölçekleme, anomali tespiti, PDF raporlar ve opt-in çoklu sağlayıcı AI analiz katmanı aynı platformda.',
-      en: 'bazNTMS is a self-hosted network visibility platform that grows from one machine to 5,000 agents. It provides process-attributed packet capture with eBPF on Linux, ETW on Windows and pcap/Npcap; NetFlow v5/v9, IPFIX and sFlow collection; plus SNMPv3, syslog and FortiGate REST integrations. Agent-hub communication is protected with mTLS, alongside RBAC, OIDC SSO, hash-chained append-only audit logs, Splunk/QRadar/ServiceNow/ArcSight connectors and 5651-compliant RFC 3161 timestamped evidence packages. SQLite-to-PostgreSQL/TimescaleDB migration, NATS JetStream ingest, Helm scaling, anomaly detection, PDF reports and opt-in multi-provider AI analysis are part of the same platform.',
+      tr: `## Problem
+
+Ağdaki trafiği, servisleri ve güvenlik kayıtlarını farklı araçlarla takip etmek; sorunların kaynağını bulmayı ve geçmişi incelemeyi zorlaştırıyordu.
+
+## Ne yaptım?
+
+Tek bir kurulumla ağ trafiğini görünür hale getiren, ekiplerin olayları incelemesine ve düzenli rapor üretmesine yardımcı olan self-hosted bir platform geliştirdim.
+
+## Sonuç
+
+- Ağ trafiği ve servis davranışı daha anlaşılır hale geldi
+- Sorun araştırmaları için daha fazla bağlam sağlandı
+- Güvenlik ve denetim kayıtları düzenli tutulabiliyor
+- Platform tek makineden binlerce cihaza kadar büyüyebiliyor
+
+## Teknik yaklaşım
+
+Go ve React tabanlı platform; eBPF, ETW, pcap/Npcap, NetFlow, IPFIX, sFlow, SNMPv3 ve syslog gibi kaynakları bir araya getiriyor. mTLS, RBAC, OIDC SSO, hash-zincirli audit log, SIEM bağlantıları, 5651 uyumlu zaman damgalı delil paketleri ve TimescaleDB ölçeklemesi teknik kapsamın parçaları.`,
+      en: `## The problem
+
+Following network traffic, services and security records through separate tools made it harder to find the source of problems and review history.
+
+## What I built
+
+I built a self-hosted platform that makes network traffic visible through one installation and helps teams investigate events and produce regular reports.
+
+## The result
+
+- Network traffic and service behavior became easier to understand
+- Investigations gained more useful context
+- Security and audit records can be kept consistently
+- The platform can grow from one machine to thousands of devices
+
+## Technical approach
+
+The Go and React platform brings together eBPF, ETW, pcap/Npcap, NetFlow, IPFIX, sFlow, SNMPv3 and syslog sources. mTLS, RBAC, OIDC SSO, hash-chained audit logs, SIEM connectors, 5651-compliant timestamped evidence packages and TimescaleDB scaling form its technical scope.`,
     },
     highlights: {
       tr: [
@@ -297,22 +473,22 @@ export const experience: Experience[] = [
     role: { tr: 'BT Uzmanı · Tek Kişilik BT Birimi', en: 'IT Specialist · One-person IT team' },
     points: {
       tr: [
-        'FortiGate güvenlik duvarı, MultiWAN, SSL VPN; Ruijie LAN/WLAN omurgası ve Ubiquiti PtP bağlantıları',
-        'HP ProLiant üzerinde Proxmox VE KVM sanallaştırma; HP iLO ile uzaktan donanım yönetimi',
-        'Synology/ZyXEL NAS, Active Backup for Business, Acronis Cloud ve periyodik DR tatbikatları',
-        'Modbus sensörleri, gateway/HMI bağlantıları, OT ağ segmentasyonu ve PDKS kurulumu',
-        'Hikvision/Dahua CCTV: 64 kamera ve yaklaşık 150 TB kayıt kapasitesi',
-        'Dia ERP teknik operasyonu, Office 365/Exchange/Teams/SharePoint/Purview ve NetGSM santral yönetimi',
-        'ISO 27001 uyumu, veri standardizasyonu ve devredilebilir teknik dokümantasyon',
+        'Üretim tesisinin ağ ve internet erişimini kesintisiz çalışacak şekilde yönettim; güvenlik duvarı, MultiWAN, VPN ve kablosuz omurgayı birlikte işlettim.',
+        'Sunucu altyapısını sanallaştırarak yeni servislerin daha hızlı ve kontrollü devreye alınmasını sağladım; Proxmox VE, HP ProLiant ve iLO kullandım.',
+        'Yedekleme ve felaket kurtarma süreçlerini kurdum; düzenli tatbikatlarla kritik verilerin geri döndürülebilirliğini test ettim.',
+        'Üretim makineleri, sensörler ve personel takip sistemlerinin altyapıya güvenli şekilde bağlanmasını sağladım; OT ağ segmentasyonu ve PDKS kurulumlarını yönettim.',
+        '64 kameralı ve yaklaşık 150 TB kayıt kapasiteli CCTV altyapısının kurulum ve işletim sorumluluğunu taşıdım.',
+        'ERP, Office 365, iletişim ve kullanıcı servislerinin günlük teknik operasyonunu tek kişilik BT birimi olarak yürüttüm.',
+        'ISO 27001 uyumu, veri standardizasyonu ve ekip içinde devredilebilir teknik dokümantasyon için süreçler oluşturdum.',
       ],
       en: [
-        'FortiGate firewall, MultiWAN and SSL VPN; Ruijie LAN/WLAN backbone and Ubiquiti PtP links',
-        'KVM virtualization with Proxmox VE on HP ProLiant; remote hardware operations through HP iLO',
-        'Synology/ZyXEL NAS, Active Backup for Business, Acronis Cloud and recurring DR drills',
-        'Modbus sensors, gateway/HMI links, OT network segmentation and PDKS deployment',
-        'Hikvision/Dahua CCTV: 64 cameras and approximately 150 TB of recording capacity',
-        'Dia ERP technical operations, Office 365/Exchange/Teams/SharePoint/Purview and NetGSM telephony',
-        'ISO 27001 alignment, data standardization and transferable technical documentation',
+        'Kept the manufacturing site\'s network and internet access reliable by operating its firewall, MultiWAN, VPN and wireless backbone together.',
+        'Virtualized the server infrastructure so new services could be deployed faster and more safely, using Proxmox VE, HP ProLiant and iLO.',
+        'Built backup and disaster-recovery processes, then tested recoverability of critical data through recurring drills.',
+        'Connected production machines, sensors and attendance systems to the infrastructure securely, including OT segmentation and PDKS deployment.',
+        'Owned the operation of a CCTV environment with 64 cameras and approximately 150 TB of recording capacity.',
+        'Ran the day-to-day technical operations of ERP, Office 365, communications and user services as a one-person IT team.',
+        'Established processes for ISO 27001 alignment, data standardization and technical documentation that can be handed over to others.',
       ],
     },
   },
@@ -321,8 +497,8 @@ export const experience: Experience[] = [
     company: 'Bağımsız / proje bazlı',
     role: { tr: 'Freelance Web Geliştirici', en: 'Freelance Web Developer' },
     points: {
-      tr: ['React ve JavaScript ekosisteminde arayüzler ve web uygulamaları geliştirdim.', 'Yazılım tarafındaki temel deneyimimi gerçek proje teslimleriyle oluşturdum.'],
-      en: ['Built interfaces and web applications in the React and JavaScript ecosystem.', 'Developed my software foundation through real project deliveries.'],
+      tr: ['Farklı ihtiyaçlara göre web arayüzleri ve uygulamalar geliştirerek yazılım deneyimimi gerçek teslimlerle oluşturdum.', 'React ve JavaScript ekosisteminde kullanıcı deneyimi, veri akışı ve uygulama geliştirme sorumluluğu aldım.'],
+      en: ['Built web interfaces and applications for different needs, developing my software experience through real deliveries.', 'Worked across user experience, data flow and application development in the React and JavaScript ecosystem.'],
     },
   },
   {
@@ -331,16 +507,16 @@ export const experience: Experience[] = [
     role: { tr: 'IT Teknisyeni', en: 'IT Technician' },
     points: {
       tr: [
-        'Kurumsal müşterilerde ağ kablolaması, switch/AP kurulumu ve cihaz yapılandırmaları',
-        'Kurumsal CCTV montajı, kablolaması ve yapılandırması',
-        'PC-POS, market/kafe otomasyonu, barkod okuyucu, yazıcı ve yedekleme sistemleri kurulumu',
-        'Farklı sektörlerdeki altyapı senaryolarına hızlı adaptasyon',
+        'Kurumsal müşterilerde ağ altyapılarını kurarak cihazların güvenilir şekilde iletişim kurmasını sağladım.',
+        'CCTV sistemlerinin montaj, kablolama ve devreye alma süreçlerini yönettim.',
+        'PC-POS, market/kafe otomasyonu, barkod okuyucu, yazıcı ve yedekleme sistemlerini sahada kurdum.',
+        'Farklı sektörlerin ihtiyaçlarına hızlı adapte olarak sorunları yerinde analiz edip çözüme ulaştırdım.',
       ],
       en: [
-        'Network cabling, switch/AP installation and device configuration for enterprise customers',
-        'Enterprise CCTV installation, cabling and configuration',
-        'PC-POS, retail/cafe automation, barcode readers, printers and backup systems',
-        'Fast adaptation across infrastructure scenarios in different industries',
+        'Built network infrastructure for enterprise customers so their devices could communicate reliably.',
+        'Managed installation, cabling and commissioning of CCTV systems.',
+        'Installed PC-POS, retail/cafe automation, barcode readers, printers and backup systems on site.',
+        'Adapted quickly to different industries by analyzing issues on site and turning them into practical solutions.',
       ],
     },
   },

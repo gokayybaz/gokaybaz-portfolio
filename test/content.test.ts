@@ -54,3 +54,17 @@ test('defaultContent mirrors the exported content', () => {
   expect(defaultContent.profile.tr).toBeTruthy()
   expect(defaultContent.site.name).toBe('Gökay Baz')
 })
+
+test('long-form content follows a human-first layered structure', () => {
+  expect(defaultContent.profile.tr).toContain('## Nasıl çalışıyorum?')
+  expect(defaultContent.profile.en).toContain('## How I work')
+
+  for (const project of projects) {
+    expect(project.description.tr).not.toContain('Modbus TCP/IP')
+    expect(project.description.tr).not.toContain('eBPF')
+    expect(project.detail?.tr).toContain('## Problem')
+    expect(project.detail?.tr).toContain('## Teknik yaklaşım')
+    expect(project.detail?.en).toContain('## The problem')
+    expect(project.detail?.en).toContain('## Technical approach')
+  }
+})
