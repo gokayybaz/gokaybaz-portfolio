@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import { HashRouter } from 'react-router'
-import App from './App'
-import { LanguageProvider } from './i18n/LanguageContext'
+import App from '../src/App'
+import { LanguageProvider } from '../src/i18n/LanguageContext'
 
-test('renders placeholder', () => {
+test('home renders hero name and project sections', () => {
   render(
     <HashRouter>
       <LanguageProvider>
@@ -12,4 +12,6 @@ test('renders placeholder', () => {
     </HashRouter>,
   )
   expect(screen.getByText('Gökay Baz')).toBeInTheDocument()
+  expect(screen.getByText('bazntms')).toBeInTheDocument()
+  expect(screen.getByText('Binboğa e-Commerce')).toBeInTheDocument()
 })
