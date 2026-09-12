@@ -5,7 +5,7 @@ class MockIntersectionObserver implements IntersectionObserver {
   readonly rootMargin: string = ''
   readonly thresholds: readonly number[] = []
   readonly isIntersecting = false
-  readonly scrollMargin: DOMRectReadOnly = new DOMRectReadOnly()
+  readonly scrollMargin: string = ''
   takeRecords(): IntersectionObserverEntry[] {
     return []
   }
@@ -23,3 +23,21 @@ class MockResizeObserver {
 }
 
 globalThis.ResizeObserver = MockResizeObserver as typeof ResizeObserver
+
+if (!window.matchMedia) {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: (query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener() {},
+      removeListener() {},
+      addEventListener() {},
+      removeEventListener() {},
+      dispatchEvent() {
+        return false
+      },
+    }),
+  })
+}
