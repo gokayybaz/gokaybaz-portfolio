@@ -13,12 +13,12 @@ export function NetworkCanvas() {
     let h = 0
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let N = window.innerWidth < 640 ? 24 : 60
+    let N = window.innerWidth < 640 ? 40 : 90
     let pts = Array.from({ length: N }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
     }))
 
     const draw = () => {
@@ -54,14 +54,14 @@ export function NetworkCanvas() {
       const rect = canvas.parentElement!.getBoundingClientRect()
       w = canvas.width = rect.width
       h = canvas.height = rect.height
-      const next = window.innerWidth < 640 ? 24 : 60
+      const next = window.innerWidth < 640 ? 40 : 90
       if (next !== N) {
         N = next
         pts = Array.from({ length: N }, () => ({
           x: Math.random() * w,
           y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
         }))
       }
       if (reduced) draw()
