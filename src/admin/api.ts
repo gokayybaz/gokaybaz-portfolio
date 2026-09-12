@@ -28,3 +28,12 @@ export async function saveContent(doc: ContentDocument): Promise<ContentDocument
   if (!res.ok) throw new Error('save failed')
   return (await res.json()) as ContentDocument
 }
+
+export async function uploadImage(file: File): Promise<string> {
+  const body = new FormData()
+  body.append('file', file)
+  const res = await adminFetch('/api/admin/upload', { method: 'POST', body })
+  if (!res.ok) throw new Error('upload failed')
+  const json = (await res.json()) as { url: string }
+  return json.url
+}
