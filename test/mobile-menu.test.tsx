@@ -45,3 +45,15 @@ test('locks body scroll while open', () => {
   renderMenu({ links: LINKS, onNavigate: () => {}, onClose: () => {} })
   expect(document.body.style.overflow).toBe('hidden')
 })
+
+test('active link gets text-term class', () => {
+  renderMenu({ links: LINKS, activeId: 'projects', onNavigate: () => {}, onClose: () => {} })
+  expect(screen.getByRole('button', { name: 'Projeler' })).toHaveClass('text-term')
+  expect(screen.getByRole('button', { name: 'Hakkımda' })).not.toHaveClass('text-term')
+})
+
+test('defaults active highlight to first link when nothing active', () => {
+  renderMenu({ links: LINKS, onNavigate: () => {}, onClose: () => {} })
+  expect(screen.getByRole('button', { name: 'Hakkımda' })).toHaveClass('text-term')
+  expect(screen.getByRole('button', { name: 'Projeler' })).not.toHaveClass('text-term')
+})

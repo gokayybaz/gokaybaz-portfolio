@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { MobileMenu } from './MobileMenu'
 
@@ -9,6 +9,7 @@ function scrollTo(id: string) {
 export function Header() {
   const { lang, setLang, t } = useLanguage()
   const [open, setOpen] = useState(false)
+  const [activeId, setActiveId] = useState('about')
   const links = [
     { id: 'about', label: t({ tr: 'Hakkımda', en: 'About' }) },
     { id: 'projects', label: t({ tr: 'Projeler', en: 'Projects' }) },
@@ -16,6 +17,21 @@ export function Header() {
     { id: 'skills', label: t({ tr: 'Yetenekler', en: 'Skills' }) },
     { id: 'contact', label: t({ tr: 'İletişim', en: 'Contact' }) },
   ]
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveId(entry.target.id)
+        }
+      },
+      { rootMargin: '-40% 0px -55% 0px' },
+    )
+    for (const id of ['about', 'projects', 'experience', 'skills', 'contact']) {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    }
+    return () => observer.disconnect()
+  }, [])
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-ink/80 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
@@ -55,13 +71,20 @@ export function Header() {
           </span>
           <button
             onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')}
-            className="border border-line px-2 py-1 font-mono text-xs text-term transition-colors hover:border-term"
+            className="min-h-11 border border-line px-3 font-mono text-xs text-term transition-colors hover:border-term"
           >
             {lang === 'tr' ? 'EN' : 'TR'}
           </button>
         </div>
       </div>
-      {open && <MobileMenu links={links} onNavigate={scrollTo} onClose={() => setOpen(false)} />}
+      {open && (
+        <MobileMenu
+          links={links}
+          activeId={activeId}
+          onNavigate={scrollTo}
+          onClose={() => setOpen(false)}
+        />
+      )}
     </header>
   )
 }

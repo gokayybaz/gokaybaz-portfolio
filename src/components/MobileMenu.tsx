@@ -3,10 +3,12 @@ import { useLanguage } from '../i18n/LanguageContext'
 
 export function MobileMenu({
   links,
+  activeId,
   onNavigate,
   onClose,
 }: {
   links: { id: string; label: string }[]
+  activeId?: string
   onNavigate: (id: string) => void
   onClose: () => void
 }) {
@@ -41,19 +43,24 @@ export function MobileMenu({
         </button>
       </div>
       <nav className="flex flex-1 flex-col justify-center gap-2 px-8">
-        {links.map((l) => (
-          <button
-            key={l.id}
-            onClick={() => {
-              onNavigate(l.id)
-              onClose()
-            }}
-            className="min-h-11 border-b border-line py-3 text-left font-mono text-2xl text-paper-dim transition-colors hover:text-term"
-          >
-            <span aria-hidden="true" className="mr-3 text-term">$</span>
-            {l.label}
-          </button>
-        ))}
+        {links.map((l) => {
+          const active = (activeId ?? links[0]?.id) === l.id
+          return (
+            <button
+              key={l.id}
+              onClick={() => {
+                onNavigate(l.id)
+                onClose()
+              }}
+              className={`min-h-11 border-b border-line py-3 text-left font-mono text-2xl transition-colors hover:text-term ${
+                active ? 'text-term' : 'text-paper-dim'
+              }`}
+            >
+              <span aria-hidden="true" className="mr-3 text-term">$</span>
+              {l.label}
+            </button>
+          )
+        })}
       </nav>
       <div className="flex items-center justify-between border-t border-line px-8 py-6">
         <button

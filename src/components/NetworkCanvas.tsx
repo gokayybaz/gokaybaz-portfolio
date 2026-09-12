@@ -12,18 +12,9 @@ export function NetworkCanvas() {
     let w = 0
     let h = 0
 
-    const resize = () => {
-      const rect = canvas.parentElement!.getBoundingClientRect()
-      w = canvas.width = rect.width
-      h = canvas.height = rect.height
-    }
-    resize()
-    const ro = new ResizeObserver(resize)
-    ro.observe(canvas.parentElement!)
-
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const N = window.innerWidth < 640 ? 24 : 60
-    const pts = Array.from({ length: N }, () => ({
+    let N = window.innerWidth < 640 ? 24 : 60
+    let pts = Array.from({ length: N }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
       vx: (Math.random() - 0.5) * 0.4,
@@ -58,6 +49,26 @@ export function NetworkCanvas() {
       }
       if (!reduced) raf = requestAnimationFrame(draw)
     }
+
+    const resize = () => {
+      const rect = canvas.parentElement!.getBoundingClientRect()
+      w = canvas.width = rect.width
+      h = canvas.height = rect.height
+      const next = window.innerWidth < 640 ? 24 : 60
+      if (next !== N) {
+        N = next
+        pts = Array.from({ length: N }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+        }))
+      }
+      if (reduced) draw()
+    }
+    resize()
+    const ro = new ResizeObserver(resize)
+    ro.observe(canvas.parentElement!)
     draw()
 
     return () => {
