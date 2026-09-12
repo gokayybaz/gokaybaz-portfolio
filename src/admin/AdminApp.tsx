@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { NavLink, Navigate, Route, Routes, useNavigate } from 'react-router'
 import { defaultContent, type ContentDocument } from '../data/content'
 import { fetchAdminContent, saveContent } from './api'
 import { LoginPage } from './LoginPage'
+import { findMissingFields } from './validate'
 import { ProjectsEditor } from './sections/ProjectsEditor'
 import { ExperienceEditor } from './sections/ExperienceEditor'
 import { SkillsEditor } from './sections/SkillsEditor'
@@ -27,7 +28,11 @@ export function AdminApp() {
   const [doc, setDoc] = useState<ContentDocument>(defaultContent)
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
+  const [missing, setMissing] = useState<string[] | null>(null)
+  const savedRef = useRef<ContentDocument | null>(null)
   const navigate = useNavigate()
+
+  const dirty = savedRef.current !== null && savedRef.current !== doc
 
   useEffect(() => {
     fetch('/api/admin/session', { credentials: 'include' })
@@ -38,10 +43,23 @@ export function AdminApp() {
   useEffect(() => {
     if (authed) {
       fetchAdminContent()
-        .then(setDoc)
+        .then((loaded) => {
+          savedRef.current = loaded
+          setDoc(loaded)
+        })
         .catch(() => setMessage('İçerik yüklenemedi.'))
     }
   }, [authed])
+
+  useEffect(() => {
+    function onBeforeUnload(e: BeforeUnloadEvent) {
+      if (savedRef.current && savedRef.current !== doc) {
+        e.preventDefault()
+      }
+    }
+    window.addEventListener('beforeunload', onBeforeUnload)
+    return () => window.removeEventListener('beforeunload', onBeforeUnload)
+  }, [doc])
 
   if (authed === null) {
     return <div className="min-h-screen bg-ink" />
@@ -58,10 +76,17 @@ export function AdminApp() {
   }
 
   async function handleSave() {
+    const missingFields = findMissingFields(doc)
+    if (missingFields.length > 0) {
+      setMissing(missingFields.map((m) => `${m.section} → ${m.label}`))
+      return
+    }
+    setMissing(null)
     setSaving(true)
     setMessage(null)
     try {
       const saved = await saveContent(doc)
+      savedRef.current = saved
       setDoc(saved)
       setMessage('Kaydedildi.')
     } catch {
@@ -91,6 +116,7 @@ export function AdminApp() {
           </nav>
           <div className="ml-auto flex items-center gap-3">
             {message && <span className="font-mono text-xs text-amber">{message}</span>}
+            {dirty && <span className="font-mono text-xs text-red-400">• kaydedilmemiş</span>}
             <button
               onClick={handleSave}
               disabled={saving}
@@ -106,6 +132,18 @@ export function AdminApp() {
       </header>
       <main className="mx-auto max-w-5xl px-6 py-10">
         <h1 className="text-2xl font-bold text-paper">Admin Panel</h1>
+        {missing && missing.length > 0 && (
+          <div className="mt-4 border border-red-400 bg-red-400/5 p-4">
+            <p className="font-mono text-xs text-red-400">
+              Zorunlu alanlar eksik, kayıt engellendi:
+            </p>
+            <ul className="mt-2 space-y-1 font-mono text-xs text-paper-dim">
+              {missing.map((m) => (
+                <li key={m}>— {m}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <Routes>
           <Route index element={<Navigate to="projects" replace />} />
           <Route path="projects" element={<ProjectsEditor doc={doc} setDoc={setDoc} />} />

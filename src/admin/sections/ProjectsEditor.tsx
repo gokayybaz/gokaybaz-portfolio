@@ -2,6 +2,7 @@ import type { ContentDocument, Project } from '../../data/content'
 import { ArrayControls, Checkbox, CommaInput, DictInput, LinesInput, Panel, TextInput } from '../fields'
 import { ImageField } from '../ImageField'
 import { MarkdownInput } from '../MarkdownInput'
+import { slugify } from '../slugify'
 
 function blankProject(): Project {
   return {
@@ -44,7 +45,16 @@ export function ProjectsEditor({ doc, setDoc }: { doc: ContentDocument; setDoc: 
       {projects.map((project, index) => (
         <Panel key={project.slug} title={`${project.featured ? '★ ' : ''}${project.title.tr || project.slug}`}>
           <div className="grid gap-4 md:grid-cols-2">
-            <TextInput label="Slug" value={project.slug} onChange={(v) => update(index, { slug: v })} />
+            <div>
+              <TextInput label="Slug" value={project.slug} onChange={(v) => update(index, { slug: v })} />
+              <button
+                type="button"
+                onClick={() => update(index, { slug: slugify(project.title.tr || project.title.en) })}
+                className="mt-1 font-mono text-[10px] text-paper-dim hover:text-term"
+              >
+                başlıktan üret ↻
+              </button>
+            </div>
             <div className="flex items-end justify-between gap-2">
               <Checkbox
                 label="Öne çıkan"
