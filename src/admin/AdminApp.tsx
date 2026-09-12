@@ -7,6 +7,8 @@ import { ProjectsEditor } from './sections/ProjectsEditor'
 import { ExperienceEditor } from './sections/ExperienceEditor'
 import { SkillsEditor } from './sections/SkillsEditor'
 import { EducationEditor } from './sections/EducationEditor'
+import { SiteEditor } from './sections/SiteEditor'
+import { AboutEditor } from './sections/AboutEditor'
 
 const PROJECT_SECTION = { id: 'projects', label: 'Projeler' } as const
 
@@ -19,10 +21,6 @@ const OTHER_SECTIONS = [
 ] as const
 
 const SECTIONS = [PROJECT_SECTION, ...OTHER_SECTIONS]
-
-function Placeholder({ section }: { section: string }) {
-  return <p className="font-mono text-sm text-paper-dim">{section} editörü hazırlanıyor.</p>
-}
 
 export function AdminApp() {
   const [authed, setAuthed] = useState<boolean | null>(null)
@@ -114,9 +112,8 @@ export function AdminApp() {
           <Route path="experience" element={<ExperienceEditor doc={doc} setDoc={setDoc} />} />
           <Route path="skills" element={<SkillsEditor doc={doc} setDoc={setDoc} />} />
           <Route path="education" element={<EducationEditor doc={doc} setDoc={setDoc} />} />
-          {OTHER_SECTIONS.map((s) => (
-            <Route key={s.id} path={s.id} element={<Placeholder section={s.label} />} />
-          ))}
+          <Route path="site" element={<SiteEditor doc={doc} setDoc={setDoc} />} />
+          <Route path="about" element={<AboutEditor doc={doc} setDoc={setDoc} />} />
         </Routes>
       </main>
     </div>
