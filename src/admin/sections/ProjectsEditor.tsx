@@ -1,5 +1,6 @@
 import type { ContentDocument, Project } from '../../data/content'
 import { ArrayControls, Checkbox, CommaInput, DictInput, LinesInput, Panel, TextInput } from '../fields'
+import { MarkdownInput } from '../MarkdownInput'
 
 function blankProject(): Project {
   return {
@@ -60,13 +61,37 @@ export function ProjectsEditor({ doc, setDoc }: { doc: ContentDocument; setDoc: 
             <DictInput label="Başlık" value={project.title} onChange={(v) => update(index, { title: v })} />
             <DictInput label="Dönem" value={project.period} onChange={(v) => update(index, { period: v })} />
           </div>
-          <DictInput label="Açıklama" value={project.description} onChange={(v) => update(index, { description: v })} />
-          <DictInput
-            label="Detay metni (opsiyonel)"
-            value={project.detail ?? { tr: '', en: '' }}
-            textarea
-            rows={6}
-            onChange={(v) => update(index, { detail: v.tr || v.en ? v : undefined })}
+          <MarkdownInput
+            label="Açıklama (markdown)"
+            value={project.description.tr}
+            rows={4}
+            onChange={(tr) => update(index, { description: { ...project.description, tr } })}
+          />
+          <MarkdownInput
+            label="Description (EN markdown)"
+            value={project.description.en}
+            rows={4}
+            onChange={(en) => update(index, { description: { ...project.description, en } })}
+          />
+          <MarkdownInput
+            label="Detay metni TR (markdown, opsiyonel)"
+            value={project.detail?.tr ?? ''}
+            rows={10}
+            onChange={(tr) =>
+              update(index, {
+                detail: tr || project.detail?.en ? { tr, en: project.detail?.en ?? '' } : undefined,
+              })
+            }
+          />
+          <MarkdownInput
+            label="Detail text EN (markdown, opsiyonel)"
+            value={project.detail?.en ?? ''}
+            rows={10}
+            onChange={(en) =>
+              update(index, {
+                detail: en || project.detail?.tr ? { tr: project.detail?.tr ?? '', en } : undefined,
+              })
+            }
           />
           <DictInput
             label="Metrik (opsiyonel)"
