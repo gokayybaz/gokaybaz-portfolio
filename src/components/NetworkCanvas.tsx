@@ -22,7 +22,7 @@ export function NetworkCanvas() {
     ro.observe(canvas.parentElement!)
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const N = 60
+    const N = window.innerWidth < 640 ? 24 : 60
     const pts = Array.from({ length: N }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
@@ -56,7 +56,7 @@ export function NetworkCanvas() {
           }
         }
       }
-      raf = requestAnimationFrame(draw)
+      if (!reduced) raf = requestAnimationFrame(draw)
     }
     draw()
 
