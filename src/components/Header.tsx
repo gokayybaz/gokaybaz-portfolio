@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
+import { MobileMenu } from './MobileMenu'
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -6,6 +8,7 @@ function scrollTo(id: string) {
 
 export function Header() {
   const { lang, setLang, t } = useLanguage()
+  const [open, setOpen] = useState(false)
   const links = [
     { id: 'about', label: t({ tr: 'Hakkımda', en: 'About' }) },
     { id: 'projects', label: t({ tr: 'Projeler', en: 'Projects' }) },
@@ -37,8 +40,16 @@ export function Header() {
             </button>
           ))}
         </nav>
+        <button
+          aria-label="Menüyü aç"
+          aria-expanded={open}
+          onClick={() => setOpen(true)}
+          className="min-h-11 min-w-11 font-mono text-sm text-term md:hidden"
+        >
+          [ ≡ ]
+        </button>
         <div className="flex items-center gap-4">
-          <span className="hidden items-center gap-2 font-mono text-xs text-paper-dim sm:flex">
+          <span className="hidden items-center gap-2 font-mono text-xs text-paper-dim md:flex">
             <span className="h-2 w-2 animate-pulse rounded-full bg-term" />
             {t({ tr: 'İş fırsatlarına açık', en: 'open to work' })}
           </span>
@@ -50,6 +61,7 @@ export function Header() {
           </button>
         </div>
       </div>
+      {open && <MobileMenu links={links} onNavigate={scrollTo} onClose={() => setOpen(false)} />}
     </header>
   )
 }
