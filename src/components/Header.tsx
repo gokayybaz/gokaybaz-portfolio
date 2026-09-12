@@ -34,7 +34,15 @@ export function Header() {
   }, [])
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-ink/80 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-2 px-6">
+        <button
+          aria-label="Menüyü aç"
+          aria-expanded={open}
+          onClick={() => setOpen(true)}
+          className="min-h-11 min-w-11 shrink-0 font-mono text-sm text-term md:hidden"
+        >
+          [ ≡ ]
+        </button>
         <a
           href="#/"
           onClick={(e) => {
@@ -56,14 +64,6 @@ export function Header() {
             </button>
           ))}
         </nav>
-        <button
-          aria-label="Menüyü aç"
-          aria-expanded={open}
-          onClick={() => setOpen(true)}
-          className="min-h-11 min-w-11 font-mono text-sm text-term md:hidden"
-        >
-          [ ≡ ]
-        </button>
         <div className="flex items-center gap-4">
           <span className="hidden items-center gap-2 font-mono text-xs text-paper-dim md:flex">
             <span className="h-2 w-2 animate-pulse rounded-full bg-term" />

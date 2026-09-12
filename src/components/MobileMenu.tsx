@@ -30,7 +30,7 @@ export function MobileMenu({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[60] flex flex-col bg-ink/98 backdrop-blur md:hidden"
+      className="fixed inset-0 z-[60] flex flex-col bg-ink md:hidden"
     >
       <div className="flex h-14 items-center justify-between border-b border-line px-6">
         <span className="font-mono text-sm text-term">~/gokaybaz<span className="animate-pulse">_</span></span>
