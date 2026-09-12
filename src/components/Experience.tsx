@@ -31,12 +31,10 @@ export function Experience() {
               <details
                 className="mt-4 max-w-3xl border-t border-line pt-3"
                 open={openDetails[e.company] ?? false}
-                onToggle={(event) =>
-                  setOpenDetails((current) => ({
-                    ...current,
-                    [e.company]: event.currentTarget.open,
-                  }))
-                }
+                onToggle={(event) => {
+                  const isOpen = event.currentTarget.open
+                  setOpenDetails((current) => ({ ...current, [e.company]: isOpen }))
+                }}
               >
                 <summary className="cursor-pointer list-none font-mono text-xs text-term hover:text-amber">
                   $ {t({

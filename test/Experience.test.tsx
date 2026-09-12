@@ -25,4 +25,6 @@ test('reveals technical details on demand', async () => {
   await userEvent.click(screen.getAllByText('$ teknik detayları göster')[0])
   expect(screen.getByText('$ teknik detayları gizle')).toBeInTheDocument()
   expect(screen.getByText(/Üretim tesisinin ağ ve internet erişimini/)).toBeInTheDocument()
+  await userEvent.click(screen.getByText('$ teknik detayları gizle'))
+  expect(screen.getAllByText('$ teknik detayları göster')).toHaveLength(3)
 })
