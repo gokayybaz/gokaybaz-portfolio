@@ -1,5 +1,6 @@
 import type { ContentDocument, Socials } from '../../data/content'
 import { CommaInput, DictInput, TextInput } from '../fields'
+import { ImageField } from '../ImageField'
 
 export function SiteEditor({ doc, setDoc }: { doc: ContentDocument; setDoc: (doc: ContentDocument) => void }) {
   const site = doc.site
@@ -28,6 +29,15 @@ export function SiteEditor({ doc, setDoc }: { doc: ContentDocument; setDoc: (doc
           label="Avatar aday dosyaları"
           value={site.avatarCandidates}
           onChange={(avatarCandidates) => update({ avatarCandidates })}
+        />
+        <ImageField
+          label="Avatar yükle (yüklenen görsel aday listesine eklenir)"
+          value=""
+          onChange={(url) => {
+            if (url && !site.avatarCandidates.includes(url)) {
+              update({ avatarCandidates: [url, ...site.avatarCandidates] })
+            }
+          }}
         />
       </section>
       <section className="space-y-4 border border-line bg-ink-soft p-6">

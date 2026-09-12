@@ -1,5 +1,6 @@
 import type { ContentDocument, Project } from '../../data/content'
 import { ArrayControls, Checkbox, CommaInput, DictInput, LinesInput, Panel, TextInput } from '../fields'
+import { ImageField } from '../ImageField'
 import { MarkdownInput } from '../MarkdownInput'
 
 function blankProject(): Project {
@@ -108,6 +109,11 @@ export function ProjectsEditor({ doc, setDoc }: { doc: ContentDocument; setDoc: 
             label="Highlights — one per line (EN, opsiyonel)"
             value={project.highlights?.en ?? []}
             onChange={(en) => update(index, { highlights: { tr: project.highlights?.tr ?? [], en } })}
+          />
+          <ImageField
+            label="Proje görseli (opsiyonel)"
+            value={project.image ?? ''}
+            onChange={(image) => update(index, { image: image || undefined })}
           />
           <div className="grid gap-4 md:grid-cols-2">
             <CommaInput label="Stack" value={project.stack} onChange={(stack) => update(index, { stack })} />
