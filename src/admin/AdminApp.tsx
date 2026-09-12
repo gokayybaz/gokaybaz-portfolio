@@ -10,11 +10,15 @@ import { SkillsEditor } from './sections/SkillsEditor'
 import { EducationEditor } from './sections/EducationEditor'
 import { SiteEditor } from './sections/SiteEditor'
 import { AboutEditor } from './sections/AboutEditor'
+import { ExpertiseEditor } from './sections/ExpertiseEditor'
+import { ArticlesEditor } from './sections/ArticlesEditor'
 import { AdminTabBar } from './AdminTabBar'
 
 const PROJECT_SECTION = { id: 'projects', label: 'Projeler' } as const
 
 const OTHER_SECTIONS = [
+  { id: 'expertise', label: 'Uzmanlık' },
+  { id: 'articles', label: 'Yazılar' },
   { id: 'experience', label: 'Deneyim' },
   { id: 'skills', label: 'Yetenekler' },
   { id: 'education', label: 'Eğitim' },
@@ -148,6 +152,8 @@ export function AdminApp() {
         <Routes>
           <Route index element={<Navigate to="projects" replace />} />
           <Route path="projects" element={<ProjectsEditor doc={doc} setDoc={setDoc} />} />
+          <Route path="expertise" element={<ExpertiseEditor doc={doc} setDoc={setDoc} />} />
+          <Route path="articles" element={<ArticlesEditor doc={doc} setDoc={setDoc} />} />
           <Route path="experience" element={<ExperienceEditor doc={doc} setDoc={setDoc} />} />
           <Route path="skills" element={<SkillsEditor doc={doc} setDoc={setDoc} />} />
           <Route path="education" element={<EducationEditor doc={doc} setDoc={setDoc} />} />

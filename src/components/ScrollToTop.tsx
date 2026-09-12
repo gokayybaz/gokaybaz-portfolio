@@ -7,12 +7,15 @@ export function ScrollToTop() {
   useEffect(() => {
     const previousRestoration = window.history.scrollRestoration
     window.history.scrollRestoration = 'manual'
-    window.scrollTo(0, 0)
+    const targetId = location.hash.slice(1)
+    const target = targetId ? document.getElementById(targetId) : null
+    if (target) target.scrollIntoView({ behavior: 'smooth' })
+    else window.scrollTo(0, 0)
 
     return () => {
       window.history.scrollRestoration = previousRestoration
     }
-  }, [location.key])
+  }, [location.hash, location.key])
 
   return null
 }

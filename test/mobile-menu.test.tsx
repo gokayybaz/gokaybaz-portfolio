@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { MemoryRouter } from 'react-router'
 import { MobileMenu } from '../src/components/MobileMenu'
 import { LanguageProvider } from '../src/i18n/LanguageContext'
 
@@ -10,9 +11,11 @@ const LINKS = [
 
 function renderMenu(props: Parameters<typeof MobileMenu>[0]) {
   return render(
-    <LanguageProvider>
-      <MobileMenu {...props} />
-    </LanguageProvider>,
+    <MemoryRouter>
+      <LanguageProvider>
+        <MobileMenu {...props} />
+      </LanguageProvider>
+    </MemoryRouter>,
   )
 }
 

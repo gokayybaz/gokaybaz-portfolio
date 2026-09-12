@@ -23,6 +23,10 @@ export function Avatar() {
     <img
       src={site.avatarCandidates[candidateIndex]}
       alt={site.name}
+      width={192}
+      height={192}
+      fetchPriority="high"
+      decoding="async"
       onError={() => {
         if (candidateIndex < site.avatarCandidates.length - 1) {
           setCandidateIndex((index) => index + 1)

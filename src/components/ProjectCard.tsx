@@ -1,17 +1,22 @@
 import type { Project } from '../data/content'
 import { useLanguage } from '../i18n/LanguageContext'
+import { Link } from 'react-router'
+import { localizedPath } from '../routing/locale'
 
 export function ProjectCard({ project }: { project: Project }) {
-  const { t } = useLanguage()
+  const { lang, t } = useLanguage()
   return (
-    <a
-      href={`#/project/${project.slug}`}
+    <Link
+      to={localizedPath(lang, `/projeler/${project.slug}`)}
       className="group flex h-full flex-col border border-line bg-ink-soft p-6 transition-colors hover:border-term"
     >
       {project.image && (
         <img
           src={project.image}
           alt={t(project.title)}
+          width={800}
+          height={450}
+          decoding="async"
           loading="lazy"
           className="mb-4 aspect-[16/9] w-full border border-line object-cover"
         />
@@ -32,6 +37,6 @@ export function ProjectCard({ project }: { project: Project }) {
       <span className="mt-4 inline-block font-mono text-xs text-term">
          {t({ tr: 'Detay →', en: 'Details →' })}
       </span>
-    </a>
+    </Link>
   )
 }

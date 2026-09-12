@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router'
 import { useLanguage } from '../i18n/LanguageContext'
 import { MobileMenu } from './MobileMenu'
+import { localizedPath } from '../routing/locale'
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -8,15 +10,28 @@ function scrollTo(id: string) {
 
 export function Header() {
   const { lang, setLang, t } = useLanguage()
+  const location = useLocation()
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const [activeId, setActiveId] = useState('about')
   const links = [
-    { id: 'about', label: t({ tr: 'Hakkımda', en: 'About' }) },
-    { id: 'projects', label: t({ tr: 'Projeler', en: 'Projects' }) },
-    { id: 'experience', label: t({ tr: 'Deneyim', en: 'Experience' }) },
-    { id: 'skills', label: t({ tr: 'Yetenekler', en: 'Skills' }) },
-    { id: 'contact', label: t({ tr: 'İletişim', en: 'Contact' }) },
+    { id: 'about', path: '/hakkimda', label: t({ tr: 'Hakkımda', en: 'About' }) },
+    { id: 'projects', path: '/projeler', label: t({ tr: 'Projeler', en: 'Projects' }) },
+    { id: 'experience', path: '/deneyim', label: t({ tr: 'Deneyim', en: 'Experience' }) },
+    { id: 'skills', path: '/#skills', label: t({ tr: 'Yetenekler', en: 'Skills' }) },
+    { id: 'contact', path: '/iletisim', label: t({ tr: 'İletişim', en: 'Contact' }) },
   ]
+  const isHome = location.pathname === '/' || location.pathname === '/en'
+
+  function goTo(id: string) {
+    const link = links.find((item) => item.id === id)
+    if (!link) return
+    if (isHome) {
+      scrollTo(id)
+      return
+    }
+    navigate(localizedPath(lang, link.path))
+  }
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -43,25 +58,24 @@ export function Header() {
           className="min-h-11 min-w-11 shrink-0 font-mono text-sm text-term md:hidden"
         >
           [ ≡ ]
-        </button>        <a
-          href="#/"
-          onClick={(e) => {
-            e.preventDefault()
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-          }}
+        </button>
+        <Link
+          to={localizedPath(lang, '/')}
           className="font-mono text-sm text-term"
         >
           ~/gokaybaz<span className="animate-pulse">_</span>
-        </a>
-        <nav className="hidden gap-6 font-mono text-sm text-paper-dim md:flex">
+        </Link>
+        <nav aria-label="Ana navigasyon" className="hidden gap-6 font-mono text-sm text-paper-dim md:flex">
           {links.map((l) => (
-            <button
-              key={l.id}
-              onClick={() => scrollTo(l.id)}
-              className="font-mono transition-colors hover:text-term"
-            >
-              {l.label}
-            </button>
+            isHome ? (
+              <button key={l.id} onClick={() => scrollTo(l.id)} className="font-mono transition-colors hover:text-term">
+                {l.label}
+              </button>
+            ) : (
+              <Link key={l.id} to={localizedPath(lang, l.path)} className="font-mono transition-colors hover:text-term">
+                {l.label}
+              </Link>
+            )
           ))}
         </nav>
         <div className="flex items-center gap-4">
@@ -81,7 +95,7 @@ export function Header() {
         <MobileMenu
           links={links}
           activeId={activeId}
-          onNavigate={scrollTo}
+          onNavigate={goTo}
           onClose={() => setOpen(false)}
         />
       )}

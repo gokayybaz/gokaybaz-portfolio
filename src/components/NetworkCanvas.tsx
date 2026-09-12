@@ -13,7 +13,8 @@ export function NetworkCanvas() {
     let h = 0
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let N = window.innerWidth < 640 ? 40 : 90
+    const pointCount = () => (window.innerWidth < 640 ? 32 : window.innerWidth < 1024 ? 56 : 80)
+    let N = pointCount()
     let pts = Array.from({ length: N }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
@@ -54,7 +55,7 @@ export function NetworkCanvas() {
       const rect = canvas.parentElement!.getBoundingClientRect()
       w = canvas.width = rect.width
       h = canvas.height = rect.height
-      const next = window.innerWidth < 640 ? 40 : 90
+      const next = pointCount()
       if (next !== N) {
         N = next
         pts = Array.from({ length: N }, () => ({

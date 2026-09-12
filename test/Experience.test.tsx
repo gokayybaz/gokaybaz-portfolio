@@ -1,13 +1,16 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { MemoryRouter } from 'react-router'
 import { Experience } from '../src/components/Experience'
 import { LanguageProvider } from '../src/i18n/LanguageContext'
 
 test('shows a readable summary and keeps technical details collapsed', () => {
   render(
-    <LanguageProvider>
-      <Experience />
-    </LanguageProvider>,
+    <MemoryRouter>
+      <LanguageProvider>
+        <Experience />
+      </LanguageProvider>
+    </MemoryRouter>,
   )
 
   expect(screen.getByText(/Üretim tesisinin ağ ve sistem altyapısını/)).toBeInTheDocument()
@@ -17,9 +20,11 @@ test('shows a readable summary and keeps technical details collapsed', () => {
 
 test('reveals technical details on demand', async () => {
   render(
-    <LanguageProvider>
-      <Experience />
-    </LanguageProvider>,
+    <MemoryRouter>
+      <LanguageProvider>
+        <Experience />
+      </LanguageProvider>
+    </MemoryRouter>,
   )
 
   await userEvent.click(screen.getAllByText('$ teknik detayları göster')[0])

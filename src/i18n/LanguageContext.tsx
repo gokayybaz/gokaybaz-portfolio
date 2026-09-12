@@ -1,4 +1,6 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, type ReactNode } from 'react'
+import { useLocation, useNavigate } from 'react-router'
+import { getLangFromPath, localizedPath, stripLocalePrefix } from '../routing/locale'
 
 export type Lang = 'tr' | 'en'
 export type Dict = { tr: string; en: string }
@@ -12,14 +14,14 @@ interface LanguageValue {
 const LanguageContext = createContext<LanguageValue | null>(null)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(() => {
-    const saved = localStorage.getItem('gk-lang')
-    return saved === 'en' || saved === 'tr' ? saved : 'tr'
-  })
+  const location = useLocation()
+  const navigate = useNavigate()
+  const lang = getLangFromPath(location.pathname)
 
   const setLang = (l: Lang) => {
-    setLangState(l)
     localStorage.setItem('gk-lang', l)
+    const { path } = stripLocalePrefix(location.pathname)
+    navigate(localizedPath(l, path))
   }
 
   useEffect(() => {

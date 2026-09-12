@@ -8,19 +8,21 @@ import { randomUUID } from 'node:crypto'
 import { promises as fs } from 'node:fs'
 import sharp from 'sharp'
 import { contentSchema } from './schema'
-import { createStore } from './store'
+import { createStore, type ContentStore } from './store'
+import { getCanonicalUrls, renderLlms, renderRobots, renderSitemap } from './sitemap'
 
 export interface AppConfig {
   dataFile: string
   passwordHash: string
   jwtSecret: string
   uploadsDir: string
+  contentStore?: ContentStore
 }
 
 const IMAGE_MIMES = ['image/png', 'image/jpeg', 'image/webp', 'image/gif']
 
 export function createApp(config: AppConfig) {
-  const store = createStore(config.dataFile)
+  const store = config.contentStore ?? createStore(config.dataFile)
   const app = express()
   app.use(express.json({ limit: '2mb' }))
   app.use(cookieParser())
@@ -35,6 +37,21 @@ export function createApp(config: AppConfig) {
   })
 
   app.use('/uploads', express.static(config.uploadsDir, { fallthrough: false }))
+
+  const siteUrl = process.env.SITE_URL ?? 'https://gokaybaz.com'
+  app.get('/sitemap.xml', async (_req, res) => {
+    const content = await store.read()
+    res.type('application/xml').send(renderSitemap(getCanonicalUrls(content, siteUrl)))
+  })
+
+  app.get('/robots.txt', (_req, res) => {
+    res.type('text/plain').send(renderRobots(siteUrl))
+  })
+
+  app.get('/llms.txt', async (_req, res) => {
+    const content = await store.read()
+    res.type('text/plain').send(renderLlms(content, siteUrl))
+  })
 
   app.get('/api/content', async (_req, res) => {
     try {

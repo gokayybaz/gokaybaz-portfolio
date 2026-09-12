@@ -1,4 +1,5 @@
 import { render, screen, act } from '@testing-library/react'
+import { MemoryRouter } from 'react-router'
 import { LanguageProvider, useLanguage } from '../src/i18n/LanguageContext'
 
 function Probe() {
@@ -14,9 +15,11 @@ function Probe() {
 
 test('defaults to tr and switches to en', () => {
   render(
-    <LanguageProvider>
-      <Probe />
-    </LanguageProvider>,
+    <MemoryRouter initialEntries={['/']}>
+      <LanguageProvider>
+        <Probe />
+      </LanguageProvider>
+    </MemoryRouter>,
   )
   expect(screen.getByTestId('lang')).toHaveTextContent('tr')
   expect(screen.getByTestId('text')).toHaveTextContent('merhaba')
@@ -28,12 +31,26 @@ test('defaults to tr and switches to en', () => {
   expect(localStorage.getItem('gk-lang')).toBe('en')
 })
 
-test('restores lang from localStorage', () => {
+test('keeps the canonical root URL Turkish regardless of localStorage', () => {
   localStorage.setItem('gk-lang', 'en')
   render(
-    <LanguageProvider>
-      <Probe />
-    </LanguageProvider>,
+    <MemoryRouter initialEntries={['/']}>
+      <LanguageProvider>
+        <Probe />
+      </LanguageProvider>
+    </MemoryRouter>,
+  )
+  expect(screen.getByTestId('lang')).toHaveTextContent('tr')
+})
+
+test('uses the browser URL as the language source', () => {
+  render(
+    <MemoryRouter initialEntries={['/en']}>
+      <LanguageProvider>
+        <Probe />
+      </LanguageProvider>
+    </MemoryRouter>,
   )
   expect(screen.getByTestId('lang')).toHaveTextContent('en')
+  expect(document.documentElement.lang).toBe('en')
 })

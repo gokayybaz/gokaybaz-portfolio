@@ -84,3 +84,15 @@ test('avatar candidates prefer the optimized webp asset', () => {
   expect(defaultContent.site.avatarCandidates[0]).toBe('/profile.webp')
   expect(defaultContent.site.avatarCandidates).toContain('/profile.png')
 })
+
+test('fallback content includes the three expertise pages and linked article drafts', () => {
+  expect(defaultContent.expertisePages).toHaveLength(3)
+  expect(defaultContent.articles.length).toBeGreaterThanOrEqual(4)
+
+  const projectSlugs = new Set(defaultContent.projects.map((project) => project.slug))
+  for (const page of defaultContent.expertisePages) {
+    expect(page.title.tr).toBeTruthy()
+    expect(page.body.tr).toBeTruthy()
+    for (const slug of page.relatedProjectSlugs) expect(projectSlugs.has(slug)).toBe(true)
+  }
+})

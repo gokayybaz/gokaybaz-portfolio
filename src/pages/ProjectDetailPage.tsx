@@ -3,6 +3,8 @@ import Markdown from 'react-markdown'
 import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { Reveal } from '../components/Reveal'
+import { SeoHead } from '../components/SeoHead'
+import { localizedPath } from '../routing/locale'
 
 export default function ProjectDetailPage() {
   const { slug } = useParams()
@@ -13,8 +15,10 @@ export default function ProjectDetailPage() {
   if (!project) return <Navigate to="/" replace />
 
   return (
-    <div className="mx-auto min-h-screen max-w-3xl px-6 py-24">
-      <Link to="/" className="font-mono text-sm text-paper-dim transition-colors hover:text-term">
+    <>
+      <SeoHead />
+      <div className="mx-auto min-h-screen max-w-3xl px-6 py-24">
+      <Link to={localizedPath(lang, '/')} className="font-mono text-sm text-paper-dim transition-colors hover:text-term">
         ← {t({ tr: 'Geri', en: 'Back' })}
       </Link>
       <p className="mt-8 font-mono text-xs text-term">
@@ -81,6 +85,7 @@ export default function ProjectDetailPage() {
           )}
         </div>
       </Reveal>
-    </div>
+      </div>
+    </>
   )
 }

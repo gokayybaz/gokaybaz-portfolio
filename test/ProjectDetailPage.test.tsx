@@ -6,14 +6,14 @@ import { projects } from '../src/data/content'
 
 function renderAt(slug?: string) {
   return render(
-    <LanguageProvider>
-      <MemoryRouter initialEntries={slug ? [`/project/${slug}`] : ['/project/unknown-slug']}>
+    <MemoryRouter initialEntries={slug ? [`/project/${slug}`] : ['/project/unknown-slug']}>
+      <LanguageProvider>
         <Routes>
           <Route path="/project/:slug" element={<ProjectDetailPage />} />
           <Route path="/" element={<div>home</div>} />
         </Routes>
-      </MemoryRouter>
-    </LanguageProvider>,
+      </LanguageProvider>
+    </MemoryRouter>,
   )
 }
 

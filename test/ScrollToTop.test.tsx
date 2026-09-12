@@ -27,3 +27,20 @@ test('scrolls to the top after navigation', () => {
 
   scrollTo.mockRestore()
 })
+
+test('scrolls to a hash target instead of overriding it with the top', () => {
+  const scrollIntoView = vi.fn()
+  const target = document.createElement('div')
+  target.id = 'skills'
+  target.scrollIntoView = scrollIntoView
+  document.body.appendChild(target)
+
+  render(
+    <MemoryRouter initialEntries={['/en#skills']}>
+      <ScrollToTop />
+    </MemoryRouter>,
+  )
+
+  expect(scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' })
+  target.remove()
+})

@@ -5,6 +5,8 @@ import path from 'node:path'
 import bcrypt from 'bcryptjs'
 import request from 'supertest'
 import { createApp, type AppConfig } from './app'
+import { contentSchema, projectSchema } from './schema'
+import { defaultContent } from '../src/data/content'
 
 let PASSWORD_HASH: string
 
@@ -61,4 +63,57 @@ test('PUT /api/admin/content persists a valid document', async () => {
 
   const reread = await request(app).get('/api/content')
   expect(reread.body.aboutTags).toEqual(['React', 'Go'])
+})
+
+test('content schema accepts SEO pages and articles', () => {
+  const extended = {
+    ...defaultContent,
+    expertisePages: [
+      {
+        slug: 'bt-altyapi',
+        title: { tr: 'BT Altyapı', en: 'IT Infrastructure' },
+        summary: { tr: 'Özet', en: 'Summary' },
+        body: { tr: '## Kapsam', en: '## Scope' },
+        seo: {
+          title: { tr: 'BT Altyapı | Gökay Baz', en: 'IT Infrastructure | Gökay Baz' },
+          description: { tr: 'Açıklama', en: 'Description' },
+          excerpt: { tr: 'Kısa özet', en: 'Short summary' },
+          updatedAt: '2026-09-12',
+        },
+        relatedProjectSlugs: ['factory-portal'],
+        relatedArticleSlugs: ['first-article'],
+        updatedAt: '2026-09-12',
+      },
+    ],
+    articles: [
+      {
+        slug: 'first-article',
+        title: { tr: 'İlk yazı', en: 'First article' },
+        excerpt: { tr: 'Özet', en: 'Summary' },
+        body: { tr: '# İçerik', en: '# Content' },
+        category: { tr: 'BT', en: 'IT' },
+        keywords: { tr: ['BT'], en: ['IT'] },
+        seo: {
+          title: { tr: 'İlk yazı | Gökay Baz', en: 'First article | Gökay Baz' },
+          description: { tr: 'Açıklama', en: 'Description' },
+          excerpt: { tr: 'Kısa özet', en: 'Short summary' },
+          updatedAt: '2026-09-12',
+        },
+        publishedAt: '2026-09-12',
+        updatedAt: '2026-09-12',
+        relatedProjectSlugs: ['factory-portal'],
+      },
+    ],
+  }
+
+  expect(contentSchema.safeParse(extended).success).toBe(true)
+
+  const invalid = structuredClone(extended)
+  invalid.expertisePages[0].seo.title = undefined
+  expect(contentSchema.safeParse(invalid).success).toBe(false)
+})
+
+test('content schema rejects unsafe public slugs', () => {
+  expect(projectSchema.safeParse({ ...defaultContent.projects[0], slug: 'bad/slug' }).success).toBe(false)
+  expect(projectSchema.safeParse({ ...defaultContent.projects[0], slug: 'Bad Slug' }).success).toBe(false)
 })

@@ -7,10 +7,12 @@ import { Skills } from '../components/Skills'
 import { Education } from '../components/Education'
 import { BlogTeaser } from '../components/BlogTeaser'
 import { Footer } from '../components/Footer'
+import { SeoHead } from '../components/SeoHead'
 
 export default function HomePage() {
   return (
     <>
+      <SeoHead />
       <Header />
       <main>
         <Hero />
