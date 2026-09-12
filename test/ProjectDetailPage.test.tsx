@@ -19,7 +19,9 @@ function renderAt(slug?: string) {
 
 test('renders project detail for known slug', () => {
   renderAt(projects[0].slug)
-  expect(screen.getByText(projects[0].title)).toBeInTheDocument()
+  expect(screen.getByText(projects[0].title.tr)).toBeInTheDocument()
+  expect(screen.getByText(projects[0].period.tr)).toBeInTheDocument()
+  expect(screen.getByText(projects[0].metric!.tr)).toBeInTheDocument()
   expect(screen.getByText(projects[0].stack[0])).toBeInTheDocument()
 })
 
