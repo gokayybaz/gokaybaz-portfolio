@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH:?set ADMIN_PASSWORD_HASH in .env}
+      - JWT_SECRET=${JWT_SECRET:?set JWT_SECRET in .env}
+    volumes:
+      - ./server/data:/app/server/data
+    restart: unless-stopped
