@@ -7,7 +7,7 @@ export function About() {
   return (
     <section id="about" className="mx-auto max-w-5xl px-6 py-24">
       <Reveal>
-        <h2 className="font-mono text-sm text-term">## {t({ tr: 'hakkimda', en: 'about' })}</h2>
+        <h2 className="font-mono text-sm text-term">## {t({ tr: 'Profil', en: 'Profile' })}</h2>
       </Reveal>
       <div className="mt-10 grid gap-12 md:grid-cols-[3fr_2fr]">
         <Reveal delay={100}>

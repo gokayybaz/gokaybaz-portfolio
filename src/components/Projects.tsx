@@ -9,7 +9,7 @@ export function Projects() {
   return (
     <section id="projects" className="mx-auto max-w-5xl px-6 py-24">
       <Reveal>
-        <h2 className="font-mono text-sm text-term">## {t({ tr: 'projeler', en: 'projects' })}</h2>
+        <h2 className="font-mono text-sm text-term">## {t({ tr: 'Projeler', en: 'Projects' })}</h2>
       </Reveal>
       <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
         {ordered.map((p, i) => (

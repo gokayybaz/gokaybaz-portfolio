@@ -10,6 +10,7 @@ export function Header() {
     { id: 'about', label: t({ tr: 'Hakkımda', en: 'About' }) },
     { id: 'projects', label: t({ tr: 'Projeler', en: 'Projects' }) },
     { id: 'experience', label: t({ tr: 'Deneyim', en: 'Experience' }) },
+    { id: 'skills', label: t({ tr: 'Yetenekler', en: 'Skills' }) },
     { id: 'contact', label: t({ tr: 'İletişim', en: 'Contact' }) },
   ]
   return (
@@ -39,7 +40,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <span className="hidden items-center gap-2 font-mono text-xs text-paper-dim sm:flex">
             <span className="h-2 w-2 animate-pulse rounded-full bg-term" />
-            {t({ tr: 'açık işe', en: 'open to work' })}
+            {t({ tr: 'İş fırsatlarına açık', en: 'open to work' })}
           </span>
           <button
             onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')}

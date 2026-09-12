@@ -5,12 +5,13 @@ import { useLanguage } from '../i18n/LanguageContext'
 
 const PROMPT = '$ whoami'
 
-function Avatar() {
+export function Avatar() {
   const [missing, setMissing] = useState(false)
+  const [candidateIndex, setCandidateIndex] = useState(0)
   if (missing) {
     return (
       <div
-        className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full border-2 border-dashed border-line font-mono text-2xl text-term"
+        className="mx-auto mb-6 flex h-44 w-44 items-center justify-center rounded-full border-2 border-dashed border-line font-mono text-2xl text-term sm:h-48 sm:w-48"
         aria-hidden="true"
       >
         GB
@@ -19,10 +20,16 @@ function Avatar() {
   }
   return (
     <img
-      src={site.avatar}
+      src={site.avatarCandidates[candidateIndex]}
       alt={site.name}
-      onError={() => setMissing(true)}
-      className="mx-auto mb-6 h-24 w-24 rounded-full border border-line object-cover"
+      onError={() => {
+        if (candidateIndex < site.avatarCandidates.length - 1) {
+          setCandidateIndex((index) => index + 1)
+        } else {
+          setMissing(true)
+        }
+      }}
+      className="mx-auto mb-6 h-44 w-44 rounded-full border border-line object-cover sm:h-48 sm:w-48"
     />
   )
 }
@@ -89,10 +96,16 @@ export function Hero() {
           {typed}
           <span className="animate-pulse">▋</span>
         </p>
-        <h1 className="mt-6 font-mono text-5xl font-bold tracking-tight text-paper sm:text-7xl">
+        <h1 className="mt-6 font-mono text-5xl font-bold tracking-tight text-paper [word-spacing:-0.2em] sm:text-7xl">
           {site.name}
         </h1>
         <p className="mt-4 text-lg text-paper-dim sm:text-xl">{t(site.title)}</p>
+        <p className="mt-2 font-mono text-xs text-amber sm:text-sm">{t(site.subtitle)}</p>
+        <div className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-2 font-mono text-xs text-paper-dim">
+          <span>{t(site.location)}</span>
+          <span className="text-line">/</span>
+          <span>{t(site.availability)}</span>
+        </div>
         <div className="mt-10 flex justify-center gap-5">
           {socials.map(({ href, label, Icon }) => (
             <a
@@ -107,8 +120,14 @@ export function Hero() {
             </a>
           ))}
         </div>
+        <a
+          href={site.socials.phone}
+          className="mt-5 inline-block font-mono text-xs text-paper-dim transition-colors hover:text-term"
+        >
+          +90 544 508 54 79
+        </a>
         <div className="mt-16 font-mono text-xs text-paper-dim">
-          <span className="animate-pulse">↓</span> {t({ tr: 'aşağı kaydır', en: 'scroll down' })}
+          <span className="animate-pulse">↓</span> {t({ tr: 'Aşağı kaydır', en: 'Scroll down' })}
         </div>
       </div>
     </section>

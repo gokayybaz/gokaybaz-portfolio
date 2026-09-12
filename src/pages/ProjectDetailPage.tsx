@@ -13,13 +13,17 @@ export default function ProjectDetailPage() {
   return (
     <div className="mx-auto min-h-screen max-w-3xl px-6 py-24">
       <Link to="/" className="font-mono text-sm text-paper-dim transition-colors hover:text-term">
-        ← {t({ tr: 'geri', en: 'back' })}
+        ← {t({ tr: 'Geri', en: 'Back' })}
       </Link>
       <p className="mt-8 font-mono text-xs text-term">
         ~/gokaybaz/projects/{project.slug}
       </p>
-      <h1 className="mt-2 text-4xl font-bold text-paper">{project.title}</h1>
+      <div className="mt-2 flex flex-wrap items-baseline justify-between gap-3">
+        <h1 className="text-4xl font-bold text-paper">{t(project.title)}</h1>
+        <span className="font-mono text-sm text-paper-dim">{t(project.period)}</span>
+      </div>
       <Reveal>
+        {project.metric && <p className="mt-3 font-mono text-sm text-amber">{t(project.metric)}</p>}
         <p className="mt-6 text-paper-dim">{t(project.description)}</p>
         {project.detail && <p className="mt-4 leading-relaxed text-paper-dim">{t(project.detail)}</p>}
         {project.highlights && (
@@ -57,7 +61,7 @@ export default function ProjectDetailPage() {
               rel="noreferrer"
               className="font-mono text-sm text-term hover:underline"
             >
-              {t({ tr: 'canlı demo ↗', en: 'live demo ↗' })}
+              {t({ tr: 'Canlı demo ↗', en: 'Live demo ↗' })}
             </a>
           )}
         </div>

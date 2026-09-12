@@ -14,7 +14,7 @@ export function Footer() {
     <footer id="contact" className="border-t border-line">
       <div className="mx-auto max-w-5xl px-6 py-24">
         <Reveal>
-          <h2 className="font-mono text-sm text-term">## {t({ tr: 'iletisim', en: 'contact' })}</h2>
+          <h2 className="font-mono text-sm text-term">## {t({ tr: 'İletişim', en: 'Contact' })}</h2>
           <p className="mt-6 text-xl text-paper-dim">
             {t({ tr: 'Bir proje, bir fikir ya da sadece merhaba —', en: 'A project, an idea, or just a hello —' })}
           </p>
@@ -24,6 +24,10 @@ export function Footer() {
           >
             gokaybaz2000@gmail.com
           </a>
+          <div className="mt-3 flex flex-wrap gap-4 font-mono text-xs text-paper-dim">
+            <a href={site.socials.phone} className="transition-colors hover:text-term">+90 544 508 54 79</a>
+            <span>{t(site.location)}</span>
+          </div>
           <div className="mt-10 flex gap-6">
             {links.map((l) => (
               <a
@@ -37,12 +41,6 @@ export function Footer() {
               </a>
             ))}
           </div>
-          <p className="mt-16 font-mono text-xs text-paper-dim">
-            {t({
-              tr: 'Vite + React ile yapıldı, tarafımdan deploy edildi.',
-              en: 'Built with Vite + React, deployed by me.',
-            })}
-          </p>
         </Reveal>
       </div>
     </footer>

@@ -24,7 +24,7 @@ class MockResizeObserver {
 
 globalThis.ResizeObserver = MockResizeObserver as typeof ResizeObserver
 
-if (!window.matchMedia) {
+if (typeof window !== 'undefined' && !window.matchMedia) {
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: (query: string) => ({
