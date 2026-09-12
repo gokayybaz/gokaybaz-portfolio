@@ -52,11 +52,11 @@ test('upload accepts png and returns public url', async () => {
     .post('/api/admin/upload')
     .attach('file', pngBuffer(), { filename: 'test.png', contentType: 'image/png' })
   expect(res.status).toBe(200)
-  expect(res.body.url).toMatch(/^\/uploads\/[a-f0-9-]+\.png$/)
+  expect(res.body.url).toMatch(/^\/uploads\/[a-f0-9-]+\.webp$/)
 
   const served = await agent.get(res.body.url)
   expect(served.status).toBe(200)
-  expect(served.headers['content-type']).toContain('image/png')
+  expect(served.headers['content-type']).toContain('image/webp')
 })
 
 test('upload rejects non-image types', async () => {

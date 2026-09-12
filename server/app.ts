@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken'
 import multer from 'multer'
 import path from 'node:path'
 import { randomUUID } from 'node:crypto'
+import { promises as fs } from 'node:fs'
+import sharp from 'sharp'
 import { contentSchema } from './schema'
 import { createStore } from './store'
 
@@ -24,13 +26,7 @@ export function createApp(config: AppConfig) {
   app.use(cookieParser())
 
   const upload = multer({
-    storage: multer.diskStorage({
-      destination: config.uploadsDir,
-      filename: (_req, file, cb) => {
-        const ext = path.extname(file.originalname).toLowerCase() || '.png'
-        cb(null, `${randomUUID()}${ext}`)
-      },
-    }),
+    storage: multer.memoryStorage(),
     limits: { fileSize: 5 * 1024 * 1024 },
     fileFilter: (_req, file, cb) => {
       if (IMAGE_MIMES.includes(file.mimetype)) return cb(null, true)
@@ -119,7 +115,12 @@ export function createApp(config: AppConfig) {
       if (err) return res.status(400).json({ error: 'invalid file' })
       const file = req.file
       if (!file) return res.status(400).json({ error: 'no file provided' })
-      res.json({ url: `/uploads/${file.filename}` })
+      const filename = `${randomUUID()}.webp`
+      const outputPath = path.join(config.uploadsDir, filename)
+      fs.mkdir(config.uploadsDir, { recursive: true })
+        .then(() => sharp(file.buffer).rotate().webp({ quality: 82 }).toFile(outputPath))
+        .then(() => res.json({ url: `/uploads/${filename}` }))
+        .catch(() => res.status(400).json({ error: 'invalid image' }))
     })
   })
 

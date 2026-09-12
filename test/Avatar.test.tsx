@@ -5,8 +5,8 @@ test('uses the first available profile image extension', () => {
   render(<Avatar />)
 
   const image = screen.getByRole('img', { name: 'Gökay Baz' })
-  expect(image).toHaveAttribute('src', '/profile.png')
+  expect(image).toHaveAttribute('src', '/profile.webp')
 
   fireEvent.error(image)
-  expect(screen.getByRole('img', { name: 'Gökay Baz' })).toHaveAttribute('src', '/profile.jpg')
+  expect(screen.getByRole('img', { name: 'Gökay Baz' })).toHaveAttribute('src', '/profile.png')
 })

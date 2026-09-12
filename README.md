@@ -57,4 +57,4 @@ Site `:3000`'de servis edilir; içerik `server/data/content.json`'da kalıcıdı
 - `src/components/` — page sections (Header, Hero, About, Projects, Experience, BlogTeaser, Footer)
 - `src/pages/` — HomePage + ProjectDetailPage
 - `src/admin/` — admin panel (login, editörler, api client)
-- `server/` — Express API: content store (JSON), auth (bcrypt + JWT cookie), zod validasyon
+- `server/` — Express API: content store (JSON), auth (bcrypt + JWT cookie), zod validasyon, tüm görsel upload'larını WebP'e dönüştürme

@@ -68,3 +68,8 @@ test('long-form content follows a human-first layered structure', () => {
     expect(project.detail?.en).toContain('## Technical approach')
   }
 })
+
+test('avatar candidates prefer the optimized webp asset', () => {
+  expect(defaultContent.site.avatarCandidates[0]).toBe('/profile.webp')
+  expect(defaultContent.site.avatarCandidates).toContain('/profile.png')
+})

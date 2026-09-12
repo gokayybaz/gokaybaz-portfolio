@@ -58,7 +58,7 @@ export interface Education {
 
 export const site: SiteContent = {
   name: 'Gökay Baz',
-  avatarCandidates: ['/profile.png', '/profile.jpg', '/profile.jpeg', '/profile.webp'],
+  avatarCandidates: ['/profile.webp', '/profile.png', '/profile.jpg', '/profile.jpeg'],
   location: { tr: 'Adana, Türkiye', en: 'Adana, Türkiye' } as Dict,
   availability: {
     tr: "Relocation'a açık · hibrit ve uzaktan çalışmaya uygun",
