@@ -36,6 +36,16 @@ echo "JWT_SECRET=<rastgele-uzun-dizgi>" >> .env
 docker compose up -d --build
 ```
 
+**Önemli:** bcrypt hash'i `$2b$10$...` gibi `$` karakterleri içerir. Docker Compose,
+`.env` değerlerinde `$`'ı değişken interpolasyonu olarak yorumlar ve hash'i bozar
+("The ... variable is not set" uyarısı görürsünüz, login çalışmaz). `$`'ları `$$`
+olarak escape'leyin:
+
+```bash
+sed -i 's/\$/\$\$/g' .env   # .env'deki tüm $ işaretlerini $$ yapar
+docker compose up -d --build
+```
+
 Site `:3000`'de servis edilir; içerik `server/data/content.json`'da kalıcıdır
 (volume mount). API erişilemezse site bundle'a gömülü varsayılan içerikle çalışır.
 
