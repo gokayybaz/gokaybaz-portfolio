@@ -3,15 +3,19 @@ import { NavLink, Navigate, Route, Routes, useNavigate } from 'react-router'
 import { defaultContent, type ContentDocument } from '../data/content'
 import { fetchAdminContent, saveContent } from './api'
 import { LoginPage } from './LoginPage'
+import { ProjectsEditor } from './sections/ProjectsEditor'
 
-const SECTIONS = [
-  { id: 'projects', label: 'Projeler' },
+const PROJECT_SECTION = { id: 'projects', label: 'Projeler' } as const
+
+const OTHER_SECTIONS = [
   { id: 'experience', label: 'Deneyim' },
   { id: 'skills', label: 'Yetenekler' },
   { id: 'education', label: 'Eğitim' },
   { id: 'site', label: 'Site Bilgileri' },
   { id: 'about', label: 'Hakkımda' },
 ] as const
+
+const SECTIONS = [PROJECT_SECTION, ...OTHER_SECTIONS]
 
 function Placeholder({ section }: { section: string }) {
   return <p className="font-mono text-sm text-paper-dim">{section} editörü hazırlanıyor.</p>
@@ -103,7 +107,8 @@ export function AdminApp() {
         <h1 className="text-2xl font-bold text-paper">Admin Panel</h1>
         <Routes>
           <Route index element={<Navigate to="projects" replace />} />
-          {SECTIONS.map((s) => (
+          <Route path="projects" element={<ProjectsEditor doc={doc} setDoc={setDoc} />} />
+          {OTHER_SECTIONS.map((s) => (
             <Route key={s.id} path={s.id} element={<Placeholder section={s.label} />} />
           ))}
         </Routes>
