@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs'
 import cookieParser from 'cookie-parser'
 import express, { type NextFunction, type Request, type Response } from 'express'
 import jwt from 'jsonwebtoken'
+import { contentSchema } from './schema'
 import { createStore } from './store'
 
 export interface AppConfig {
@@ -72,6 +73,19 @@ export function createApp(config: AppConfig) {
 
   app.get('/api/admin/session', requireAuth, (_req, res) => {
     res.json({ ok: true })
+  })
+
+  app.get('/api/admin/content', requireAuth, async (_req, res) => {
+    res.json(await store.read())
+  })
+
+  app.put('/api/admin/content', requireAuth, async (req, res) => {
+    const parsed = contentSchema.safeParse(req.body)
+    if (!parsed.success) {
+      return res.status(400).json({ error: 'invalid content document', issues: parsed.error.issues })
+    }
+    await store.write(parsed.data)
+    res.json(parsed.data)
   })
 
   return app
