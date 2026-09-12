@@ -43,5 +43,9 @@
     "vite": "^8.3.0",
     "vitest": "^5.0.0"
   },
-  "description": "Gökay Baz personal portfolio"
+  "description": "Gökay Baz personal portfolio",
+  "packageManager": "pnpm@10.32.1",
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
 }
