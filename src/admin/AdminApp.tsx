@@ -4,6 +4,9 @@ import { defaultContent, type ContentDocument } from '../data/content'
 import { fetchAdminContent, saveContent } from './api'
 import { LoginPage } from './LoginPage'
 import { ProjectsEditor } from './sections/ProjectsEditor'
+import { ExperienceEditor } from './sections/ExperienceEditor'
+import { SkillsEditor } from './sections/SkillsEditor'
+import { EducationEditor } from './sections/EducationEditor'
 
 const PROJECT_SECTION = { id: 'projects', label: 'Projeler' } as const
 
@@ -108,6 +111,9 @@ export function AdminApp() {
         <Routes>
           <Route index element={<Navigate to="projects" replace />} />
           <Route path="projects" element={<ProjectsEditor doc={doc} setDoc={setDoc} />} />
+          <Route path="experience" element={<ExperienceEditor doc={doc} setDoc={setDoc} />} />
+          <Route path="skills" element={<SkillsEditor doc={doc} setDoc={setDoc} />} />
+          <Route path="education" element={<EducationEditor doc={doc} setDoc={setDoc} />} />
           {OTHER_SECTIONS.map((s) => (
             <Route key={s.id} path={s.id} element={<Placeholder section={s.label} />} />
           ))}
