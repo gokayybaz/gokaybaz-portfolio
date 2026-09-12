@@ -5,6 +5,28 @@ import { useLanguage } from '../i18n/LanguageContext'
 
 const PROMPT = '$ whoami'
 
+function Avatar() {
+  const [missing, setMissing] = useState(false)
+  if (missing) {
+    return (
+      <div
+        className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full border-2 border-dashed border-line font-mono text-2xl text-term"
+        aria-hidden="true"
+      >
+        GB
+      </div>
+    )
+  }
+  return (
+    <img
+      src={site.avatar}
+      alt={site.name}
+      onError={() => setMissing(true)}
+      className="mx-auto mb-6 h-24 w-24 rounded-full border border-line object-cover"
+    />
+  )
+}
+
 function GithubIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
@@ -62,6 +84,7 @@ export function Hero() {
       <NetworkCanvas />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/40 via-transparent to-ink" />
       <div className="relative z-10 px-6 text-center">
+        <Avatar />
         <p className="font-mono text-sm text-term">
           {typed}
           <span className="animate-pulse">▋</span>

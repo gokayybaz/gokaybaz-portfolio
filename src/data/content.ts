@@ -31,6 +31,7 @@ export interface Experience {
 
 export const site = {
   name: 'Gökay Baz',
+  avatar: '/profile.jpg',
   title: {
     tr: 'Sistem Uzmanı & Full-Stack Yazılımcı',
     en: 'IT Specialist & Full-Stack Developer',
