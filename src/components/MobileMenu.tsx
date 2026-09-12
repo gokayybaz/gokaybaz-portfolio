@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 
 export function MobileMenu({
@@ -26,7 +27,7 @@ export function MobileMenu({
     }
   }, [onClose])
 
-  return (
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
@@ -74,6 +75,7 @@ export function MobileMenu({
           {lang === 'tr' ? 'İş fırsatlarına açık' : 'open to work'}
         </span>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

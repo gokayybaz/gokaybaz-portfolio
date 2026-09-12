@@ -12,7 +12,7 @@ export function Avatar() {
   if (missing) {
     return (
       <div
-        className="mx-auto mb-16 flex h-32 w-32 items-center justify-center rounded-full border-2 border-dashed border-line font-mono text-xl text-term sm:mb-6 sm:h-48 sm:w-48 sm:text-2xl"
+        className="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full border-2 border-dashed border-line font-mono text-xl text-term sm:mb-6 sm:h-48 sm:w-48 sm:text-2xl"
         aria-hidden="true"
       >
         GB
@@ -30,7 +30,7 @@ export function Avatar() {
           setMissing(true)
         }
       }}
-      className="mx-auto mb-16 h-32 w-32 rounded-full border border-line object-cover sm:mb-6 sm:h-48 sm:w-48"
+      className="mx-auto mb-6 h-32 w-32 rounded-full border border-line object-cover sm:mb-6 sm:h-48 sm:w-48"
     />
   )
 }

@@ -32,6 +32,7 @@ export function Header() {
     }
     return () => observer.disconnect()
   }, [])
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-ink/80 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-2 px-6">
@@ -42,8 +43,7 @@ export function Header() {
           className="min-h-11 min-w-11 shrink-0 font-mono text-sm text-term md:hidden"
         >
           [ ≡ ]
-        </button>
-        <a
+        </button>        <a
           href="#/"
           onClick={(e) => {
             e.preventDefault()
