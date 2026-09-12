@@ -33,6 +33,7 @@ export const projectSchema = z.object({
   demo: z.string().optional(),
   featured: z.boolean().optional(),
   metric: dictSchema.optional(),
+  image: z.string().optional(),
 })
 
 export const experienceSchema = z.object({

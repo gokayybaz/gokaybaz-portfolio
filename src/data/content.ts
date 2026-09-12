@@ -34,6 +34,7 @@ export interface Project {
   demo?: string
   featured?: boolean
   metric?: Dict
+  image?: string
 }
 
 export interface Experience {

@@ -23,6 +23,13 @@ export default function ProjectDetailPage() {
         <h1 className="text-4xl font-bold text-paper">{t(project.title)}</h1>
         <span className="font-mono text-sm text-paper-dim">{t(project.period)}</span>
       </div>
+      {project.image && (
+        <img
+          src={project.image}
+          alt={t(project.title)}
+          className="mt-6 aspect-[16/9] w-full border border-line object-cover"
+        />
+      )}
       <Reveal>
         {project.metric && <p className="mt-3 font-mono text-sm text-amber">{t(project.metric)}</p>}
         <p className="mt-6 text-paper-dim">{t(project.description)}</p>

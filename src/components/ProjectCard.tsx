@@ -8,6 +8,14 @@ export function ProjectCard({ project }: { project: Project }) {
       href={`#/project/${project.slug}`}
       className="group flex h-full flex-col border border-line bg-ink-soft p-6 transition-colors hover:border-term"
     >
+      {project.image && (
+        <img
+          src={project.image}
+          alt={t(project.title)}
+          loading="lazy"
+          className="mb-4 aspect-[16/9] w-full border border-line object-cover"
+        />
+      )}
       <div className="flex items-start justify-between gap-4">
         <h3 className="font-mono text-lg text-paper transition-colors group-hover:text-term">{t(project.title)}</h3>
         <span className="shrink-0 font-mono text-xs text-paper-dim">{t(project.period)}</span>
