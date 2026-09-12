@@ -5,6 +5,7 @@ class MockIntersectionObserver implements IntersectionObserver {
   readonly rootMargin: string = ''
   readonly thresholds: readonly number[] = []
   readonly isIntersecting = false
+  readonly scrollMargin: DOMRectReadOnly = new DOMRectReadOnly()
   takeRecords(): IntersectionObserverEntry[] {
     return []
   }
@@ -14,3 +15,11 @@ class MockIntersectionObserver implements IntersectionObserver {
 }
 
 globalThis.IntersectionObserver = MockIntersectionObserver as typeof IntersectionObserver
+
+class MockResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+globalThis.ResizeObserver = MockResizeObserver as typeof ResizeObserver
