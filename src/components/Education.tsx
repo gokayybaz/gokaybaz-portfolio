@@ -1,9 +1,10 @@
-import { education } from '../data/content'
+import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { Reveal } from './Reveal'
 
 export function Education() {
   const { t } = useLanguage()
+  const { education } = useContent()
 
   return (
     <section id="education" className="mx-auto max-w-5xl px-6 py-24">

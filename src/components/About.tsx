@@ -1,9 +1,10 @@
-import { about, aboutTags } from '../data/content'
+import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { Reveal } from './Reveal'
 
 export function About() {
   const { t } = useLanguage()
+  const { profile: about, aboutTags } = useContent()
   return (
     <section id="about" className="mx-auto max-w-5xl px-6 py-24">
       <Reveal>

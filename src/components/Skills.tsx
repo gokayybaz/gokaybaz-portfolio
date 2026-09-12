@@ -1,9 +1,10 @@
-import { skillGroups } from '../data/content'
+import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { Reveal } from './Reveal'
 
 export function Skills() {
   const { t } = useLanguage()
+  const { skillGroups } = useContent()
 
   return (
     <section id="skills" className="mx-auto max-w-5xl px-6 py-24">

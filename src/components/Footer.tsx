@@ -1,9 +1,10 @@
-import { site } from '../data/content'
+import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { Reveal } from './Reveal'
 
 export function Footer() {
   const { t } = useLanguage()
+  const { site } = useContent()
   const links = [
     { href: site.socials.github, label: 'GitHub' },
     { href: site.socials.linkedin, label: 'LinkedIn' },

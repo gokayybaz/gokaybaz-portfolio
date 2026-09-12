@@ -1,10 +1,11 @@
-import { projects } from '../data/content'
+import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { Reveal } from './Reveal'
 import { ProjectCard } from './ProjectCard'
 
 export function Projects() {
   const { t } = useLanguage()
+  const { projects } = useContent()
   const ordered = [...projects].sort((a, b) => Number(b.featured ?? false) - Number(a.featured ?? false))
   return (
     <section id="projects" className="mx-auto max-w-5xl px-6 py-24">

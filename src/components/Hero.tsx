@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { NetworkCanvas } from './NetworkCanvas'
-import { site } from '../data/content'
+import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const PROMPT = '$ whoami'
 
 export function Avatar() {
+  const { site } = useContent()
   const [missing, setMissing] = useState(false)
   const [candidateIndex, setCandidateIndex] = useState(0)
   if (missing) {
@@ -69,6 +70,7 @@ function MailIcon() {
 
 export function Hero() {
   const { t } = useLanguage()
+  const { site } = useContent()
   const [typed, setTyped] = useState('')
 
   useEffect(() => {

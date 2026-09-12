@@ -1,11 +1,12 @@
 import { Link, Navigate, useParams } from 'react-router'
-import { projects } from '../data/content'
+import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { Reveal } from '../components/Reveal'
 
 export default function ProjectDetailPage() {
   const { slug } = useParams()
   const { lang, t } = useLanguage()
+  const { projects } = useContent()
   const project = projects.find((p) => p.slug === slug)
 
   if (!project) return <Navigate to="/" replace />

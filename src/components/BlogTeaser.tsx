@@ -1,9 +1,10 @@
-import { site } from '../data/content'
+import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { Reveal } from './Reveal'
 
 export function BlogTeaser() {
   const { t } = useLanguage()
+  const { site } = useContent()
   return (
     <section id="blog" className="mx-auto max-w-5xl px-6 py-24">
       <Reveal>

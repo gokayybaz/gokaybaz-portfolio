@@ -1,9 +1,10 @@
-import { experience } from '../data/content'
+import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { Reveal } from './Reveal'
 
 export function Experience() {
   const { lang, t } = useLanguage()
+  const { experience } = useContent()
   return (
     <section id="experience" className="mx-auto max-w-5xl px-6 py-24">
       <Reveal>
