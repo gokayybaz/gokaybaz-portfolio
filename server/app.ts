@@ -1,5 +1,7 @@
-import express from 'express'
+import bcrypt from 'bcryptjs'
 import cookieParser from 'cookie-parser'
+import express, { type NextFunction, type Request, type Response } from 'express'
+import jwt from 'jsonwebtoken'
 import { createStore } from './store'
 
 export interface AppConfig {
@@ -20,6 +22,56 @@ export function createApp(config: AppConfig) {
     } catch {
       res.status(500).json({ error: 'content read failed' })
     }
+  })
+
+  const COOKIE = 'admin_token'
+  const loginAttempts = new Map<string, { count: number; resetAt: number }>()
+
+  function rateLimited(ip: string): boolean {
+    const now = Date.now()
+    const entry = loginAttempts.get(ip)
+    if (!entry || entry.resetAt < now) {
+      loginAttempts.set(ip, { count: 1, resetAt: now + 60_000 })
+      return false
+    }
+    entry.count += 1
+    return entry.count > 5
+  }
+
+  function requireAuth(req: Request, res: Response, next: NextFunction) {
+    const token = req.cookies?.[COOKIE]
+    if (!token) return res.status(401).json({ error: 'unauthorized' })
+    try {
+      jwt.verify(token, config.jwtSecret)
+      next()
+    } catch {
+      res.status(401).json({ error: 'unauthorized' })
+    }
+  }
+
+  app.post('/api/admin/login', async (req, res) => {
+    const ip = req.ip ?? 'unknown'
+    if (rateLimited(ip)) return res.status(429).json({ error: 'too many attempts' })
+    const password = typeof req.body?.password === 'string' ? req.body.password : ''
+    const ok = await bcrypt.compare(password, config.passwordHash)
+    if (!ok) return res.status(401).json({ error: 'wrong password' })
+    const token = jwt.sign({ role: 'admin' }, config.jwtSecret, { expiresIn: '12h' })
+    res.cookie(COOKIE, token, {
+      httpOnly: true,
+      sameSite: 'strict',
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 12 * 60 * 60 * 1000,
+    })
+    res.json({ ok: true })
+  })
+
+  app.post('/api/admin/logout', (_req, res) => {
+    res.clearCookie(COOKIE)
+    res.json({ ok: true })
+  })
+
+  app.get('/api/admin/session', requireAuth, (_req, res) => {
+    res.json({ ok: true })
   })
 
   return app
