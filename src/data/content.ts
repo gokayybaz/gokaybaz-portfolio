@@ -41,6 +41,9 @@ export interface Experience {
   period: Dict
   company: string
   role: Dict
+  summary?: Dict
+  highlights?: Bi
+  details?: Bi
   points: Bi
 }
 
@@ -471,6 +474,42 @@ export const experience: Experience[] = [
     period: { tr: '2024 – devam', en: '2024 – present' },
     company: 'S.S. 745 Sayılı Kozan Bal Tarım Satış Kooperatifi (Binboğa Bal) · Kozan / Adana',
     role: { tr: 'BT Uzmanı · Tek Kişilik BT Birimi', en: 'IT Specialist · One-person IT team' },
+    summary: {
+      tr: 'Üretim tesisinin ağ ve sistem altyapısını uçtan uca yönetiyor; ekiplerin günlük operasyonunu kolaylaştıran sistemler geliştiriyorum.',
+      en: 'I manage the manufacturing site\'s network, servers, security and business systems end to end, while building tools that make daily operations easier for teams.',
+    },
+    highlights: {
+      tr: [
+        'Üretim tesisinin BT altyapısını tek kişilik BT birimi olarak yönettim',
+        'Yedekleme, güvenlik ve felaket kurtarma süreçlerini kurup test ettim',
+        'Üretim ve ERP süreçlerinin dijitalleşmesine öncülük ettim',
+      ],
+      en: [
+        'Ran the manufacturing site\'s IT infrastructure as a one-person IT team',
+        'Built and tested backup, security and disaster-recovery processes',
+        'Led the digitalization of production and ERP workflows',
+      ],
+    },
+    details: {
+      tr: [
+        'Üretim tesisinin ağ ve internet erişimini kesintisiz çalışacak şekilde yönettim; güvenlik duvarı, MultiWAN, VPN ve kablosuz omurgayı birlikte işlettim.',
+        'Sunucu altyapısını sanallaştırarak yeni servislerin daha hızlı ve kontrollü devreye alınmasını sağladım; Proxmox VE, HP ProLiant ve iLO kullandım.',
+        'Yedekleme ve felaket kurtarma süreçlerini kurdum; düzenli tatbikatlarla kritik verilerin geri döndürülebilirliğini test ettim.',
+        'Üretim makineleri, sensörler ve personel takip sistemlerinin altyapıya güvenli şekilde bağlanmasını sağladım; OT ağ segmentasyonu ve PDKS kurulumlarını yönettim.',
+        '64 kameralı ve yaklaşık 150 TB kayıt kapasiteli CCTV altyapısının kurulum ve işletim sorumluluğunu taşıdım.',
+        'ERP, Office 365, iletişim ve kullanıcı servislerinin günlük teknik operasyonunu tek kişilik BT birimi olarak yürüttüm.',
+        'ISO 27001 uyumu, veri standardizasyonu ve ekip içinde devredilebilir teknik dokümantasyon için süreçler oluşturdum.',
+      ],
+      en: [
+        'Kept the manufacturing site\'s network and internet access reliable by operating its firewall, MultiWAN, VPN and wireless backbone together.',
+        'Virtualized the server infrastructure so new services could be deployed faster and more safely, using Proxmox VE, HP ProLiant and iLO.',
+        'Built backup and disaster-recovery processes, then tested recoverability of critical data through recurring drills.',
+        'Connected production machines, sensors and attendance systems to the infrastructure securely, including OT segmentation and PDKS deployment.',
+        'Owned the operation of a CCTV environment with 64 cameras and approximately 150 TB of recording capacity.',
+        'Ran the day-to-day technical operations of ERP, Office 365, communications and user services as a one-person IT team.',
+        'Established processes for ISO 27001 alignment, data standardization and technical documentation that can be handed over to others.',
+      ],
+    },
     points: {
       tr: [
         'Üretim tesisinin ağ ve internet erişimini kesintisiz çalışacak şekilde yönettim; güvenlik duvarı, MultiWAN, VPN ve kablosuz omurgayı birlikte işlettim.',
@@ -496,6 +535,18 @@ export const experience: Experience[] = [
     period: { tr: '2020 – 2023', en: '2020 – 2023' },
     company: 'Bağımsız / proje bazlı',
     role: { tr: 'Freelance Web Geliştirici', en: 'Freelance Web Developer' },
+    summary: {
+      tr: 'Farklı ihtiyaçlara göre web uygulamaları geliştirerek yazılım deneyimimi gerçek proje teslimleriyle oluşturdum.',
+      en: 'Built web applications for different needs and developed my software experience through real project deliveries.',
+    },
+    highlights: {
+      tr: ['Gerçek müşteriler ve proje teslimleriyle yazılım pratiği kazandım', 'React ve JavaScript ile kullanılabilir web uygulamaları geliştirdim'],
+      en: ['Built software practice through real clients and project deliveries', 'Created usable web applications with React and JavaScript'],
+    },
+    details: {
+      tr: ['Farklı ihtiyaçlara göre web arayüzleri ve uygulamalar geliştirerek yazılım deneyimimi gerçek teslimlerle oluşturdum.', 'React ve JavaScript ekosisteminde kullanıcı deneyimi, veri akışı ve uygulama geliştirme sorumluluğu aldım.'],
+      en: ['Built web interfaces and applications for different needs, developing my software experience through real deliveries.', 'Worked across user experience, data flow and application development in the React and JavaScript ecosystem.'],
+    },
     points: {
       tr: ['Farklı ihtiyaçlara göre web arayüzleri ve uygulamalar geliştirerek yazılım deneyimimi gerçek teslimlerle oluşturdum.', 'React ve JavaScript ekosisteminde kullanıcı deneyimi, veri akışı ve uygulama geliştirme sorumluluğu aldım.'],
       en: ['Built web interfaces and applications for different needs, developing my software experience through real deliveries.', 'Worked across user experience, data flow and application development in the React and JavaScript ecosystem.'],
@@ -505,6 +556,18 @@ export const experience: Experience[] = [
     period: { tr: '2018 – 2022', en: '2018 – 2022' },
     company: 'Kavukluca Bilgi Teknolojileri · Kozan / Adana',
     role: { tr: 'IT Teknisyeni', en: 'IT Technician' },
+    summary: {
+      tr: 'Sahada farklı sektörlerin ağ, güvenlik ve cihaz ihtiyaçlarını çözerek altyapı pratiğimi geliştirdim.',
+      en: 'Built my infrastructure practice by solving network, security and device needs for different industries on site.',
+    },
+    highlights: {
+      tr: ['Kurumsal ağ ve CCTV kurulumlarını sahada yönettim', 'Farklı sektörlerin altyapı ihtiyaçlarına hızlı çözümler ürettim'],
+      en: ['Managed enterprise network and CCTV installations on site', 'Delivered practical infrastructure solutions across different industries'],
+    },
+    details: {
+      tr: ['Kurumsal müşterilerde ağ altyapılarını kurarak cihazların güvenilir şekilde iletişim kurmasını sağladım.', 'CCTV sistemlerinin montaj, kablolama ve devreye alma süreçlerini yönettim.', 'PC-POS, market/kafe otomasyonu, barkod okuyucu, yazıcı ve yedekleme sistemlerini sahada kurdum.', 'Farklı sektörlerin ihtiyaçlarına hızlı adapte olarak sorunları yerinde analiz edip çözüme ulaştırdım.'],
+      en: ['Built network infrastructure for enterprise customers so their devices could communicate reliably.', 'Managed installation, cabling and commissioning of CCTV systems.', 'Installed PC-POS, retail/cafe automation, barcode readers, printers and backup systems on site.', 'Adapted quickly to different industries by analyzing issues on site and turning them into practical solutions.'],
+    },
     points: {
       tr: [
         'Kurumsal müşterilerde ağ altyapılarını kurarak cihazların güvenilir şekilde iletişim kurmasını sağladım.',

@@ -24,6 +24,17 @@ test('experience entries have points in both languages', () => {
   }
 })
 
+test('experience entries have an optional readable summary and grouped details', () => {
+  for (const e of experience) {
+    expect(e.summary?.tr).toBeTruthy()
+    expect(e.summary?.en).toBeTruthy()
+    expect(e.highlights?.tr.length).toBeGreaterThan(0)
+    expect(e.highlights?.en.length).toBeGreaterThan(0)
+    expect(e.details?.tr.length).toBeGreaterThan(0)
+    expect(e.details?.en.length).toBeGreaterThan(0)
+  }
+})
+
 test('profile content reflects the current infrastructure and software focus', () => {
   expect(site.title.tr).toBe('BT Altyapı & Yazılım Uzmanı')
   expect(site.phone).toBe('tel:+905445085479')

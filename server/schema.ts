@@ -40,6 +40,9 @@ export const experienceSchema = z.object({
   period: dictSchema,
   company: z.string(),
   role: dictSchema,
+  summary: dictSchema.optional(),
+  highlights: biSchema.optional(),
+  details: biSchema.optional(),
   points: biSchema,
 })
 
