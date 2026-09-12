@@ -19,3 +19,82 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+.md-content > *:first-child {
+  margin-top: 0;
+}
+
+.md-content > *:last-child {
+  margin-bottom: 0;
+}
+
+.md-content h1,
+.md-content h2,
+.md-content h3,
+.md-content h4 {
+  @apply mt-6 mb-2 font-mono font-bold text-paper;
+}
+
+.md-content h1 {
+  @apply text-2xl;
+}
+
+.md-content h2 {
+  @apply text-xl;
+}
+
+.md-content h3 {
+  @apply text-lg;
+}
+
+.md-content p {
+  @apply my-3 leading-relaxed;
+}
+
+.md-content a {
+  @apply text-term underline underline-offset-4 hover:text-amber;
+}
+
+.md-content strong {
+  @apply text-paper;
+}
+
+.md-content em {
+  @apply italic text-paper;
+}
+
+.md-content ul {
+  @apply my-3 list-disc space-y-1 pl-6;
+}
+
+.md-content ol {
+  @apply my-3 list-decimal space-y-1 pl-6;
+}
+
+.md-content li {
+  @apply text-paper-dim;
+}
+
+.md-content code {
+  @apply border border-line bg-ink px-1.5 py-0.5 font-mono text-xs text-amber;
+}
+
+.md-content pre {
+  @apply my-3 overflow-x-auto border border-line bg-ink p-4;
+}
+
+.md-content pre code {
+  @apply border-0 bg-transparent p-0 text-xs text-term;
+}
+
+.md-content blockquote {
+  @apply my-3 border-l-2 border-term pl-4 text-paper-dim italic;
+}
+
+.md-content img {
+  @apply my-3 border border-line;
+}
+
+.md-content hr {
+  @apply my-6 border-line;
+}

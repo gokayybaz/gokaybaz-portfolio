@@ -1,3 +1,4 @@
+import Markdown from 'react-markdown'
 import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { Reveal } from './Reveal'
@@ -12,10 +13,8 @@ export function About() {
       </Reveal>
       <div className="mt-10 grid gap-12 md:grid-cols-[3fr_2fr]">
         <Reveal delay={100}>
-          <div className="space-y-4 leading-relaxed text-paper-dim">
-            {t(about).split('\n\n').map((para) => (
-              <p key={para.slice(0, 24)}>{para}</p>
-            ))}
+          <div className="md-content text-paper-dim">
+            <Markdown>{t(about)}</Markdown>
           </div>
         </Reveal>
         <Reveal delay={200}>

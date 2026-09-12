@@ -1,4 +1,5 @@
 import { Link, Navigate, useParams } from 'react-router'
+import Markdown from 'react-markdown'
 import { useContent } from '../content/ContentContext'
 import { useLanguage } from '../i18n/LanguageContext'
 import { Reveal } from '../components/Reveal'
@@ -32,8 +33,14 @@ export default function ProjectDetailPage() {
       )}
       <Reveal>
         {project.metric && <p className="mt-3 font-mono text-sm text-amber">{t(project.metric)}</p>}
-        <p className="mt-6 text-paper-dim">{t(project.description)}</p>
-        {project.detail && <p className="mt-4 leading-relaxed text-paper-dim">{t(project.detail)}</p>}
+        <div className="mt-6 md-content text-paper-dim">
+          <Markdown>{t(project.description)}</Markdown>
+        </div>
+        {project.detail && (
+          <div className="mt-4 md-content text-paper-dim">
+            <Markdown>{t(project.detail)}</Markdown>
+          </div>
+        )}
         {project.highlights && (
           <ul className="mt-8 space-y-2">
             {project.highlights[lang].map((h) => (
