@@ -29,18 +29,18 @@ Türkçe sürüm ana pazar nedeniyle kök URL'de yer alacaktır. İngilizce sür
 
 Önerilen URL yapısı:
 
-- `/` — Türkçe ana profil
-- `/hakkimda` — çalışma yaklaşımı ve uzmanlık özeti
-- `/deneyim` — görevler, sorumluluklar ve ölçülebilir sonuçlar
-- `/projeler` — proje listesi
-- `/projeler/fabrika-ic-portali` gibi — tekil proje vaka çalışmaları
+- `/` | Türkçe ana profil
+- `/hakkimda` | çalışma yaklaşımı ve uzmanlık özeti
+- `/deneyim` | görevler, sorumluluklar ve ölçülebilir sonuçlar
+- `/projeler` | proje listesi
+- `/projeler/fabrika-ic-portali` gibi | tekil proje vaka çalışmaları
 - `/uzmanlik/bt-altyapi`
 - `/uzmanlik/it-ot-uretim-dijitallesmesi`
 - `/uzmanlik/devops-platform`
-- `/yazilar` — içerik listesi
-- `/yazilar/<slug>` — tekil rehber veya karar yazısı
-- `/iletisim` — işe alım ve profesyonel iletişim
-- `/en/...` — İngilizce karşılıklar
+- `/yazilar` | içerik listesi
+- `/yazilar/<slug>` | tekil rehber veya karar yazısı
+- `/iletisim` | işe alım ve profesyonel iletişim
+- `/en/...` | İngilizce karşılıklar
 
 Her uzmanlık sayfası ilgili proje ve deneyim bölümlerine, her proje sayfası ise ilgili uzmanlık sayfasına ve iletişim yoluna bağlanacaktır. Böylece sayfalar yalnızca arama giriş noktaları değil, kişisel uzmanlık grafiğinin parçaları olacaktır.
 

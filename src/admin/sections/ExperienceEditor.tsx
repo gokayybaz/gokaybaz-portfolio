@@ -56,22 +56,22 @@ export function ExperienceEditor({ doc, setDoc }: { doc: ContentDocument; setDoc
             onChange={(summary) => update(index, { summary })}
           />
           <LinesInput
-            label="Öne çıkan sonuçlar (TR) — satır başına bir tane"
+            label="Öne çıkan sonuçlar (TR) | satır başına bir tane"
             value={item.highlights?.tr ?? item.points.tr.slice(0, 3)}
             onChange={(tr) => update(index, { highlights: { tr, en: item.highlights?.en ?? item.points.en.slice(0, 3) } })}
           />
           <LinesInput
-            label="Highlights (EN) — one per line"
+            label="Highlights (EN) | one per line"
             value={item.highlights?.en ?? item.points.en.slice(0, 3)}
             onChange={(en) => update(index, { highlights: { tr: item.highlights?.tr ?? item.points.tr.slice(0, 3), en } })}
           />
           <LinesInput
-            label="Teknik detaylar (TR) — satır başına bir tane"
+            label="Teknik detaylar (TR) | satır başına bir tane"
             value={item.details?.tr ?? item.points.tr}
             onChange={(tr) => update(index, { details: { tr, en: item.details?.en ?? item.points.en }, points: { tr, en: item.points.en } })}
           />
           <LinesInput
-            label="Technical details (EN) — one per line"
+            label="Technical details (EN) | one per line"
             value={item.details?.en ?? item.points.en}
             onChange={(en) => update(index, { details: { tr: item.details?.tr ?? item.points.tr, en }, points: { tr: item.points.tr, en } })}
           />

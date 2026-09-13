@@ -21,9 +21,9 @@ npx ctx7@latest <command>
 
 ## What this skill covers
 
-- **[Documentation](references/docs.md)** — Fetch current docs for any library. Use when writing code, verifying API signatures, or when training data may be outdated.
-- **[Skills management](references/skills.md)** — Install, search, suggest, list, remove, and generate AI coding skills.
-- **[Setup](references/setup.md)** — Configure Context7 MCP for Claude Code / Cursor / OpenCode.
+- **[Documentation](references/docs.md)** | Fetch current docs for any library. Use when writing code, verifying API signatures, or when training data may be outdated.
+- **[Skills management](references/skills.md)** | Install, search, suggest, list, remove, and generate AI coding skills.
+- **[Setup](references/setup.md)** | Configure Context7 MCP for Claude Code / Cursor / OpenCode.
 
 ## Quick Reference
 
@@ -66,7 +66,7 @@ export CONTEXT7_API_KEY=your_key
 
 ## Common Mistakes
 
-- Library IDs require a `/` prefix — `/facebook/react` not `facebook/react`
-- Always run `ctx7 library` first — `ctx7 docs react "hooks"` will fail without a valid ID
-- Repository format for skills is `/owner/repo` — e.g., `ctx7 skills install /anthropics/skills`
-- `skills generate` requires login — run `ctx7 login` first
+- Library IDs require a `/` prefix | `/facebook/react` not `facebook/react`
+- Always run `ctx7 library` first | `ctx7 docs react "hooks"` will fail without a valid ID
+- Repository format for skills is `/owner/repo` | e.g., `ctx7 skills install /anthropics/skills`
+- `skills generate` requires login | run `ctx7 login` first

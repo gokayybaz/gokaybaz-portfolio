@@ -14,19 +14,19 @@ ctx7 library nextjs "How to set up app router with middleware"
 ctx7 library prisma "How to define one-to-many relations with cascade delete"
 ```
 
-Always pass a `query` argument — it is required and directly affects result ranking. Use the user's intent to form the query, which helps disambiguate when multiple libraries share a similar name. Do not include any sensitive or confidential information such as API keys, passwords, credentials, personal data, or proprietary code in your query.
+Always pass a `query` argument | it is required and directly affects result ranking. Use the user's intent to form the query, which helps disambiguate when multiple libraries share a similar name. Do not include any sensitive or confidential information such as API keys, passwords, credentials, personal data, or proprietary code in your query.
 
 ### Result fields
 
 Each result includes:
 
-- **Library ID** — Context7-compatible identifier (format: `/org/project`)
-- **Name** — Library or package name
-- **Description** — Short summary
-- **Code Snippets** — Number of available code examples
-- **Source Reputation** — Authority indicator (High, Medium, Low, or Unknown)
-- **Benchmark Score** — Quality indicator (100 is the highest score)
-- **Versions** — List of versions if available. Use one of those versions if the user provides a version in their query. The format is `/org/project/version`.
+- **Library ID** | Context7-compatible identifier (format: `/org/project`)
+- **Name** | Library or package name
+- **Description** | Short summary
+- **Code Snippets** | Number of available code examples
+- **Source Reputation** | Authority indicator (High, Medium, Low, or Unknown)
+- **Benchmark Score** | Quality indicator (100 is the highest score)
+- **Versions** | List of versions if available. Use one of those versions if the user provides a version in their query. The format is `/org/project/version`.
 
 ### Selection process
 
@@ -78,7 +78,7 @@ IMPORTANT: Do not call `ctx7 docs` more than 3 times per question. If you cannot
 
 ### Writing good queries
 
-The query directly affects the quality of results. Be specific and include relevant details, but keep each query to one topic — if the question spans multiple distinct concepts, run a separate `ctx7 docs` command per concept instead of combining them, unless the question is about how the concepts interact. Do not include any sensitive or confidential information such as API keys, passwords, credentials, personal data, or proprietary code in your query.
+The query directly affects the quality of results. Be specific and include relevant details, but keep each query to one topic | if the question spans multiple distinct concepts, run a separate `ctx7 docs` command per concept instead of combining them, unless the question is about how the concepts interact. Do not include any sensitive or confidential information such as API keys, passwords, credentials, personal data, or proprietary code in your query.
 
 | Quality | Example |
 |---------|---------|
@@ -88,7 +88,7 @@ The query directly affects the quality of results. Be specific and include relev
 | Bad (too vague) | `"hooks"` |
 | Bad (too broad) | `"routing and auth and caching in Next.js"` |
 
-Describe what to look up in the library's documentation in the query when possible — vague one-word queries return generic results, and multi-topic queries dilute ranking and return shallow results for each topic.
+Describe what to look up in the library's documentation in the query when possible | vague one-word queries return generic results, and multi-topic queries dilute ranking and return shallow results for each topic.
 
 The output contains two types of content: **code snippets** (titled, with language-tagged blocks) and **info snippets** (prose explanations with breadcrumb context).
 
@@ -96,7 +96,7 @@ The output contains two types of content: **code snippets** (titled, with langua
 # Output as structured JSON
 ctx7 docs /facebook/react "How to use hooks for state management" --json
 
-# Pipe to other tools — output is clean when not in a TTY (no spinners or colors)
+# Pipe to other tools | output is clean when not in a TTY (no spinners or colors)
 ctx7 docs /facebook/react "How to use hooks for state management" | head -50
 ctx7 docs /vercel/next.js "How to add middleware for route protection" | grep -A5 "middleware"
 ```

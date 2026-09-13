@@ -1,4 +1,4 @@
-# gokaybaz.com v2 — Kişisel Portfolyo Sitesi Tasarımı
+# gokaybaz.com v2 | Kişisel Portfolyo Sitesi Tasarımı
 
 **Tarih:** 2026-09-12
 **Durum:** Onaylandı
@@ -13,11 +13,11 @@ Gökay Baz'ın (Sistem Uzmanı & Full-Stack Yazılımcı, Binboğa Bal) kariyer/
 - **Eğitim:** Çukurova Üniversitesi, Bilgisayar Programcılığı (Ön Lisans)
 - **Stack:** TypeScript/JavaScript, React, Next.js, Node.js, PostgreSQL, Prisma, Go (öğreniyor), Proxmox VE, Docker, Dokploy, WireGuard, FortiGate
 - **Öne çıkan projeler:**
-  - **bazntms** — Ağ trafiği izleme sistemi (Go, eBPF, 5.000 agent, SIEM entegrasyonları) — bayrak gemisi
-  - **Binboğa e-ticaret** — solo full-stack: Next.js + Prisma + PostgreSQL + QNBpay + DİA ERP + DHL + Dokploy + WireGuard
-  - **baz-eshop** — e-ticaret (React, Redux, Tailwind) — canlı: baz-e-shop.netlify.app
-  - **baz_valorant_app** — Valorant rehber uygulaması (React + Vite)
-  - **filmgezegeni** — film uygulaması (React + Vite)
+  - **bazntms** | Ağ trafiği izleme sistemi (Go, eBPF, 5.000 agent, SIEM entegrasyonları) | bayrak gemisi
+  - **Binboğa e-ticaret** | solo full-stack: Next.js + Prisma + PostgreSQL + QNBpay + DİA ERP + DHL + Dokploy + WireGuard
+  - **baz-eshop** | e-ticaret (React, Redux, Tailwind) | canlı: baz-e-shop.netlify.app
+  - **baz_valorant_app** | Valorant rehber uygulaması (React + Vite)
+  - **filmgezegeni** | film uygulaması (React + Vite)
 - **İletişim:** gokaybaz2000@gmail.com · github.com/gokayybaz · linkedin.com/in/gokayybaz · X: @gokayybaz1 · Medium: @gokaybaz2000
 
 ## Teknoloji
@@ -42,17 +42,17 @@ Gökay Baz'ın (Sistem Uzmanı & Full-Stack Yazılımcı, Binboğa Bal) kariyer/
 
 ## Sayfa Yapısı
 
-### `/` — Ana vitrin (tek sayfa, scroll)
+### `/` | Ana vitrin (tek sayfa, scroll)
 
 1. **Header (sabit):** logo/path aksanı (`~/gokaybaz`), bölüm linkleri, TR/EN toggle, status göstergesi
 2. **Hero:** büyük monospace isim, unvan (TR/EN), `$ whoami` terminal prompt animasyonu, canvas network efekti, sosyal ikonlar (GitHub, LinkedIn, X, Email)
 3. **Hakkımda:** "derine inme" hikayesi (IT → React → Full-Stack → Go/sistemler); yanda tech-stack etiketleri
 4. **Projeler:** kart grid'i; bazntms geniş öne çıkan kart. Her kart: isim, açıklama, stack etiketleri, GitHub/demo linkleri, detay sayfasına link (`/project/:slug`)
-5. **Deneyim:** dikey timeline — Kavukluca → React Staj 2024 → Binboğa Bal (alt maddeler: e-ticaret, ITMS, Proxmox migrasyonu)
+5. **Deneyim:** dikey timeline | Kavukluca → React Staj 2024 → Binboğa Bal (alt maddeler: e-ticaret, ITMS, Proxmox migrasyonu)
 6. **Blog:** "coming soon" yer tutucu + Medium linki
 7. **İletişim/Footer:** email, sosyal linkler, "built with Vite + React" imzası
 
-### `/project/:slug` — Proje detay sayfası
+### `/project/:slug` | Proje detay sayfası
 
 - Geniş açıklama (TR/EN), teknik kararlar/öne çıkanlar, stack etiketleri, GitHub/demo linkleri
 - "Diğer projelere dön" navigasyonu
@@ -60,7 +60,7 @@ Gökay Baz'ın (Sistem Uzmanı & Full-Stack Yazılımcı, Binboğa Bal) kariyer/
 
 ## Veri
 
-`src/data/content.ts` — tüm içerik TR/EN dictionary olarak tek dosyada:
+`src/data/content.ts` | tüm içerik TR/EN dictionary olarak tek dosyada:
 
 ```ts
 interface Project {
@@ -86,6 +86,6 @@ interface Project {
 ## Kapsam Dışı (YAGNI)
 
 - Gerçek blog (sadece yer tutucu)
-- CMS/backend — içerik statik
+- CMS/backend | içerik statik
 - Analytics, SEO/GEO meta (temel meta tag'ler hariç)
 - Deploy (kullanıcı "şimdilik lokal" dedi)

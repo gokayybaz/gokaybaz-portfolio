@@ -7,7 +7,7 @@ Manage AI coding skills from the Context7 registry. Skills are Markdown files th
 Install skills from any GitHub repository. Repository format is always `/owner/repo`.
 
 ```bash
-ctx7 skills install /anthropics/skills           # Interactive — pick from a list
+ctx7 skills install /anthropics/skills           # Interactive | pick from a list
 ctx7 skills install /anthropics/skills pdf        # Install a specific skill by name
 ctx7 skills install /anthropics/skills --all      # Install everything without prompting
 ```
@@ -94,7 +94,7 @@ Aliases: `ctx7 skills rm`, `ctx7 skills delete`
 
 ## Info
 
-Browse all skills in a repository without installing — useful for previewing what's available.
+Browse all skills in a repository without installing | useful for previewing what's available.
 
 ```bash
 ctx7 skills info /anthropics/skills

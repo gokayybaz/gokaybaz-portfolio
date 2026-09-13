@@ -1,6 +1,6 @@
-# gokaybaz.com — Personal Portfolio
+# gokaybaz.com | Personal Portfolio
 
-Gökay Baz's personal portfolio site — terminal/infra aesthetic, bilingual (TR/EN), built with Vite + React.
+Gökay Baz's personal portfolio site | terminal/infra aesthetic, bilingual (TR/EN), built with Vite + React.
 
 ## Development
 
@@ -24,7 +24,7 @@ pnpm dev:server   # API :8787 (varsayılan şifre: admin)
 pnpm dev          # Vite :5173
 ```
 
-Panel: `http://localhost:5173/admin` — şifre env'den gelir
+Panel: `http://localhost:5173/admin` | şifre env'den gelir
 (`ADMIN_PASSWORD` veya `ADMIN_PASSWORD_HASH` yoksa `admin`).
 
 ### Üretim (Docker)
@@ -51,14 +51,14 @@ Site `:3000`'de servis edilir; içerik `server/data/content.json`'da kalıcıdı
 
 ## Structure
 
-- `src/i18n/` — TR/EN language context (URL-based canonical language)
-- `src/data/` — typed bilingual content + `ContentDocument` tipi ve fallback veri
-- `src/content/` — ContentContext: API'den içerik çeker, fallback defaultContent
-- `src/components/` — page sections (Header, Hero, About, Projects, Experience, BlogTeaser, Footer)
-- `src/pages/` — HomePage, profile, project, expertise and article pages
+- `src/i18n/` | TR/EN language context (URL-based canonical language)
+- `src/data/` | typed bilingual content + `ContentDocument` tipi ve fallback veri
+- `src/content/` | ContentContext: API'den içerik çeker, fallback defaultContent
+- `src/components/` | page sections (Header, Hero, About, Projects, Experience, BlogTeaser, Footer)
+- `src/pages/` | HomePage, profile, project, expertise and article pages
 - Public routes: `/`, `/en`, `/projeler`, `/uzmanlik/*`, `/yazilar/*`, `/hakkimda`, `/deneyim`, `/iletisim`
-- `src/admin/` — admin panel (login, editörler, api client)
-- `server/` — Express API: content store (JSON), auth (bcrypt + JWT cookie), zod validasyon, tüm görsel upload'larını WebP'e dönüştürme
+- `src/admin/` | admin panel (login, editörler, api client)
+- `server/` | Express API: content store (JSON), auth (bcrypt + JWT cookie), zod validasyon, tüm görsel upload'larını WebP'e dönüştürme
 
 ## SEO ve GEO
 

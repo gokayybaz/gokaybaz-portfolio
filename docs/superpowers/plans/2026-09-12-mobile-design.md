@@ -51,7 +51,7 @@ test/admin-tabbar.test.tsx        # YENİ
 - Test: `test/mobile-menu.test.tsx`
 
 **Interfaces:**
-- Produces: `MobileMenu({ links: { id: string; label: string }[], onNavigate: (id: string) => void, onClose: () => void })` — overlay açıkken body scroll lock uygular, Escape ile `onClose` çağırır.
+- Produces: `MobileMenu({ links: { id: string; label: string }[], onNavigate: (id: string) => void, onClose: () => void })` | overlay açıkken body scroll lock uygular, Escape ile `onClose` çağırır.
 
 - [ ] **Step 1: Failing test yaz**
 
@@ -99,7 +99,7 @@ test('locks body scroll while open', () => {
 - [ ] **Step 2: Fail doğrula**
 
 Run: `npx vitest run test/mobile-menu.test.tsx`
-Expected: FAIL — modül yok
+Expected: FAIL | modül yok
 
 - [ ] **Step 3: MobileMenu.tsx yaz**
 
@@ -193,7 +193,7 @@ export function MobileMenu({
 </button>
 ```
 
-Status span'ının `sm:flex`'i `md:flex` olsun (hamburger ile çakışmasın). `open && <MobileMenu links={links} onNavigate={scrollTo} onClose={() => setOpen(false)} />` render et — `useLanguage` zaten var.
+Status span'ının `sm:flex`'i `md:flex` olsun (hamburger ile çakışmasın). `open && <MobileMenu links={links} onNavigate={scrollTo} onClose={() => setOpen(false)} />` render et | `useLanguage` zaten var.
 
 - [ ] **Step 5: Testleri çalıştır**
 
@@ -275,7 +275,7 @@ git commit -m "feat: fewer particles on mobile and static frame for reduced moti
 
 - [ ] **Step 2: bölüm py ayarları**
 
-Her bölümde `py-24` → `py-16 md:py-24` (About, Projects, Experience, Skills, Education, BlogTeaser, Footer — 7 dosya)
+Her bölümde `py-24` → `py-16 md:py-24` (About, Projects, Experience, Skills, Education, BlogTeaser, Footer | 7 dosya)
 
 - [ ] **Step 3: Experience timeline mobil**
 
@@ -308,7 +308,7 @@ git commit -m "feat: mobile spacing and sizing for hero and sections"
 
 **Interfaces:**
 - Consumes: `SECTIONS` yapısı (AdminApp'te `{ id, label }[]`)
-- Produces: `AdminTabBar({ sections: { id: string; label: string }[] })` — NavLink'leri alt barda render eder, `md:hidden`.
+- Produces: `AdminTabBar({ sections: { id: string; label: string }[] })` | NavLink'leri alt barda render eder, `md:hidden`.
 
 - [ ] **Step 1: Failing test yaz**
 
@@ -345,7 +345,7 @@ test('marks active section', () => {
 - [ ] **Step 2: Fail doğrula**
 
 Run: `npx vitest run test/admin-tabbar.test.tsx`
-Expected: FAIL — modül yok
+Expected: FAIL | modül yok
 
 - [ ] **Step 3: AdminTabBar.tsx yaz**
 
@@ -379,7 +379,7 @@ export function AdminTabBar({ sections }: { sections: { id: string; label: strin
 }
 ```
 
-Not: `grid-cols-6` 6 bölüm için sabit; bölüm sayısı değişirse `grid-flow-col auto-cols-fr` kullanılabilir — şimdilik sabit yeterli.
+Not: `grid-cols-6` 6 bölüm için sabit; bölüm sayısı değişirse `grid-flow-col auto-cols-fr` kullanılabilir | şimdilik sabit yeterli.
 
 - [ ] **Step 4: AdminApp'e entegre et**
 
@@ -387,7 +387,7 @@ Not: `grid-cols-6` 6 bölüm için sabit; bölüm sayısı değişirse `grid-flo
 - Header'daki Kaydet butonu kalır; header'a `pb-` gerekmez
 - `<main>`'e alt padding: `pb-24 md:pb-10` (tab bar ile içerik çakışmasın)
 - `AdminTabBar`'ı root div'in sonuna render et: `<AdminTabBar sections={SECTIONS} />`
-- Toast mesajı (`message`) header'da kalabilir — mobilde dar olduğundan header altında satır kırılması kabul
+- Toast mesajı (`message`) header'da kalabilir | mobilde dar olduğundan header altında satır kırılması kabul
 
 - [ ] **Step 5: Testleri çalıştır**
 
@@ -418,7 +418,7 @@ git commit -m "feat: admin bottom tab bar for mobile navigation"
 
 - [ ] **Step 1: DictInput grid**
 
-`md:grid-cols-2` zaten mobilde tek sütuna düşüyor — mevcut. Kontrol et, değişiklik gerekmiyorsa step'i atla.
+`md:grid-cols-2` zaten mobilde tek sütuna düşüyor | mevcut. Kontrol et, değişiklik gerekmiyorsa step'i atla.
 
 - [ ] **Step 2: dokunma hedefleri**
 
@@ -469,5 +469,5 @@ git checkout main && git merge feature/mobile-design && git branch -d feature/mo
 ## Self-Review Notları
 
 - **Spec coverage:** overlay menü → Task 1; canvas/reduced-motion → Task 2; hero/bölüm spacing → Task 3; admin tab bar → Task 4; dokunma hedefleri → Task 5; doğrulama → Task 6. Hepsi karşılanıyor.
-- **Placeholder scan:** Task 5 Step 1 "kontrol et" ifadesi doğrulama adımı — DictInput'ta `md:grid-cols-2` zaten mevcut, kod değişikliği beklenmiyor.
+- **Placeholder scan:** Task 5 Step 1 "kontrol et" ifadesi doğrulama adımı | DictInput'ta `md:grid-cols-2` zaten mevcut, kod değişikliği beklenmiyor.
 - **Type consistency:** `AdminTabBar({ sections })` Task 4'te tanımlı, AdminApp aynı imzayla kullanıyor. `MobileMenu` props'ları Header kullanımıyla tutarlı.

@@ -144,7 +144,7 @@ export function AdminApp() {
             </p>
             <ul className="mt-2 space-y-1 font-mono text-xs text-paper-dim">
               {missing.map((m) => (
-                <li key={m}>— {m}</li>
+                <li key={m}>| {m}</li>
               ))}
             </ul>
           </div>

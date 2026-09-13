@@ -17,7 +17,7 @@ export function Footer() {
         <Reveal>
           <h2 className="font-mono text-sm text-term">## {t({ tr: 'İletişim', en: 'Contact' })}</h2>
           <p className="mt-6 text-xl text-paper-dim">
-            {t({ tr: 'Bir proje, bir fikir ya da sadece merhaba —', en: 'A project, an idea, or just a hello —' })}
+            {t({ tr: 'Bir proje, bir fikir ya da sadece merhaba |', en: 'A project, an idea, or just a hello |' })}
           </p>
           <a
             href={site.socials.email}

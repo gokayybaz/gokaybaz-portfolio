@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - Paket yöneticisi: **pnpm** (`pnpm add`, `pnpm test`, `pnpm build`, `pnpm lint`)
-- Linter: oxlint (`pnpm lint`) — her task sonunda temiz olmalı
+- Linter: oxlint (`pnpm lint`) | her task sonunda temiz olmalı
 - Kodda **yorum satırı yok** (mevcut repo kuralı)
 - Admin paneli UI metinleri **Türkçe** (site TR/EN ama panel tek dil)
 - Mevcut testler (`pnpm test`) her task sonunda geçmeli
@@ -66,7 +66,7 @@ docker-compose.yml           # YENİ
 - Test: `test/content.test.ts` (mevcut dosyaya test eklenir)
 
 **Interfaces:**
-- Produces: `interface SiteContent`, `interface ContentDocument`, `export const defaultContent: ContentDocument` — sonraki tüm task'lar bunları kullanır.
+- Produces: `interface SiteContent`, `interface ContentDocument`, `export const defaultContent: ContentDocument` | sonraki tüm task'lar bunları kullanır.
 
 - [ ] **Step 1: content.ts'e SiteContent interface'i ekle**
 
@@ -150,7 +150,7 @@ git commit -m "feat: ContentDocument type and defaultContent export"
 
 ---
 
-### Task 2: Server scaffold — Express + JSON store + GET /api/content
+### Task 2: Server scaffold | Express + JSON store + GET /api/content
 
 **Files:**
 - Create: `server/store.ts`
@@ -206,7 +206,7 @@ export function createStore(dataFile: string) {
 export type ContentStore = ReturnType<typeof createStore>
 ```
 
-- [ ] **Step 3: Failing test yaz — server/content.test.ts**
+- [ ] **Step 3: Failing test yaz | server/content.test.ts**
 
 ```ts
 // @vitest-environment node
@@ -244,7 +244,7 @@ test('GET /api/content seeds and returns default content', async () => {
 - [ ] **Step 4: Testin fail ettiğini doğrula**
 
 Run: `pnpm test server/content.test.ts`
-Expected: FAIL — `createApp` tanımlı değil
+Expected: FAIL | `createApp` tanımlı değil
 
 - [ ] **Step 5: server/app.ts yaz (şimdilik auth'suz content route)**
 
@@ -277,7 +277,7 @@ export function createApp(config: AppConfig) {
 }
 ```
 
-Testte hash gerçek olmalı — test dosyasına `beforeAll` ile üretim ekle (Step 3'teki sabiti sil, yerine):
+Testte hash gerçek olmalı | test dosyasına `beforeAll` ile üretim ekle (Step 3'teki sabiti sil, yerine):
 
 ```ts
 import bcrypt from 'bcryptjs'
@@ -336,7 +336,7 @@ Expected: PASS
 - [ ] **Step 9: Manuel smoke test**
 
 Run: `pnpm dev:server` (arka planda) + `curl localhost:8787/api/content | head -c 200`
-Expected: `{"site":{"name":"Gökay Baz"...` — ve `server/data/content.json` oluşur. Sonrasında server'ı durdur ve `server/data/content.json`'ı sil (test artefaktı, commit edilmez — `.gitignore`'a `server/data/` ekle).
+Expected: `{"site":{"name":"Gökay Baz"...` | ve `server/data/content.json` oluşur. Sonrasında server'ı durdur ve `server/data/content.json`'ı sil (test artefaktı, commit edilmez | `.gitignore`'a `server/data/` ekle).
 
 - [ ] **Step 10: Lint + typecheck + tüm testler**
 
@@ -352,7 +352,7 @@ git commit -m "feat: express server with JSON content store and public GET /api/
 
 ---
 
-### Task 3: Auth endpoint'leri — login / logout / session
+### Task 3: Auth endpoint'leri | login / logout / session
 
 **Files:**
 - Modify: `server/app.ts`
@@ -362,7 +362,7 @@ git commit -m "feat: express server with JSON content store and public GET /api/
 - Consumes: `createApp(config)` (Task 2)
 - Produces: `POST /api/admin/login` (body `{ password }` → 200 + `admin_token` httpOnly cookie; 401 yanlış şifre; 429 rate limit), `POST /api/admin/logout` (cookie temizler), `GET /api/admin/session` (cookie → `{ ok: true }`; cookie yok → 401).
 
-- [ ] **Step 1: Failing test yaz — server/auth.test.ts**
+- [ ] **Step 1: Failing test yaz | server/auth.test.ts**
 
 ```ts
 // @vitest-environment node
@@ -430,12 +430,12 @@ test('login rate limits after 5 failures', async () => {
 })
 ```
 
-Not: rate limit testi aynı IP'den 5 başarısız sonrası 429 döner; diğer testler farklı agent'larda olsa da aynı app instance'ında sayaç paylaşılır — bu yüzden rate limit testi sonda.
+Not: rate limit testi aynı IP'den 5 başarısız sonrası 429 döner; diğer testler farklı agent'larda olsa da aynı app instance'ında sayaç paylaşılır | bu yüzden rate limit testi sonda.
 
 - [ ] **Step 2: Testin fail ettiğini doğrula**
 
 Run: `pnpm test server/auth.test.ts`
-Expected: FAIL — 404'ler (route'lar yok)
+Expected: FAIL | 404'ler (route'lar yok)
 
 - [ ] **Step 3: app.ts'e auth middleware ve route'ları ekle**
 
@@ -520,7 +520,7 @@ git commit -m "feat: admin auth with bcrypt, JWT httpOnly cookie and login rate 
 
 ---
 
-### Task 4: PUT /api/admin/content — zod doğrulamalı güncelleme
+### Task 4: PUT /api/admin/content | zod doğrulamalı güncelleme
 
 **Files:**
 - Create: `server/schema.ts`
@@ -601,7 +601,7 @@ export const contentSchema = z.object({
 })
 ```
 
-- [ ] **Step 2: Failing test ekle — server/content.test.ts sonuna**
+- [ ] **Step 2: Failing test ekle | server/content.test.ts sonuna**
 
 ```ts
 import bcrypt from 'bcryptjs'
@@ -701,9 +701,9 @@ git commit -m "feat: PUT /api/admin/content with zod-validated full document wri
 
 **Interfaces:**
 - Consumes: `defaultContent` (Task 1), `GET /api/content` (Task 2)
-- Produces: `ContentProvider`, `useContent(): ContentDocument` (provider yoksa `defaultContent` döner — bileşenler asla crash etmez)
+- Produces: `ContentProvider`, `useContent(): ContentDocument` (provider yoksa `defaultContent` döner | bileşenler asla crash etmez)
 
-- [ ] **Step 1: Failing test yaz — test/content-context.test.tsx**
+- [ ] **Step 1: Failing test yaz | test/content-context.test.tsx**
 
 ```tsx
 import { render, screen, waitFor } from '@testing-library/react'
@@ -746,7 +746,7 @@ Not: test dosyasının üstünde `import { defaultContent } from '../src/data/co
 - [ ] **Step 2: Testin fail ettiğini doğrula**
 
 Run: `pnpm test test/content-context.test.tsx`
-Expected: FAIL — modül bulunamadı
+Expected: FAIL | modül bulunamadı
 
 - [ ] **Step 3: src/content/ContentContext.tsx yaz**
 
@@ -806,7 +806,7 @@ server: {
 
 - [ ] **Step 6: Bileşenleri refactor et**
 
-Her bileşende aynı desen: direkt import silinir, `useContent()` çağrılır. Örnek — `src/components/Projects.tsx`:
+Her bileşende aynı desen: direkt import silinir, `useContent()` çağrılır. Örnek | `src/components/Projects.tsx`:
 
 ```tsx
 import { useContent } from '../content/ContentContext'
@@ -837,7 +837,7 @@ Diğer dosyalarda değişen import → hook çiftleri:
 - [ ] **Step 7: Testleri çalıştır**
 
 Run: `pnpm test`
-Expected: PASS — mevcut testler (App.test, vs.) fallback sayesinde provider'sız da çalışır (`useContent` provider yoksa `defaultContent` döner)
+Expected: PASS | mevcut testler (App.test, vs.) fallback sayesinde provider'sız da çalışır (`useContent` provider yoksa `defaultContent` döner)
 
 - [ ] **Step 8: Lint + build**
 
@@ -853,7 +853,7 @@ git commit -m "feat: ContentContext with API fetch and defaultContent fallback"
 
 ---
 
-### Task 6: Admin shell — routing, layout, auth akışı, login sayfası, kaydet
+### Task 6: Admin shell | routing, layout, auth akışı, login sayfası, kaydet
 
 **Files:**
 - Create: `src/admin/AdminApp.tsx`
@@ -866,7 +866,7 @@ git commit -m "feat: ContentContext with API fetch and defaultContent fallback"
 - Consumes: `ContentDocument`, `defaultContent` (Task 1); `POST /api/admin/login`, `GET /api/admin/session`, `GET/PUT /api/admin/content` (Task 3-4)
 - Produces: `AdminApp` component (`/admin/*` route'unda); `src/admin/api.ts` → `adminFetch(path, init?)`, `login(password)`, `fetchAdminContent(): Promise<ContentDocument>`, `saveContent(doc): Promise<ContentDocument>`; `type AdminSection = 'projects' | 'experience' | 'skills' | 'education' | 'site' | 'about'`
 
-- [ ] **Step 1: Failing test yaz — test/admin-login.test.tsx**
+- [ ] **Step 1: Failing test yaz | test/admin-login.test.tsx**
 
 ```tsx
 import { render, screen, waitFor } from '@testing-library/react'
@@ -904,12 +904,12 @@ test('successful login opens the admin layout', async () => {
 })
 ```
 
-Not: `userEvent` import'u sonraki adımlarda kullanılmıyor — bu task'ta iki test yeterli; import satırını ekleme. `defaultContent` için `import { defaultContent } from '../src/data/content'` ekle.
+Not: `userEvent` import'u sonraki adımlarda kullanılmıyor | bu task'ta iki test yeterli; import satırını ekleme. `defaultContent` için `import { defaultContent } from '../src/data/content'` ekle.
 
 - [ ] **Step 2: Testin fail ettiğini doğrula**
 
 Run: `pnpm test test/admin-login.test.tsx`
-Expected: FAIL — modül yok
+Expected: FAIL | modül yok
 
 - [ ] **Step 3: src/admin/api.ts yaz**
 
@@ -1155,13 +1155,13 @@ git commit -m "feat: admin shell with session check, login page and save flow"
 - Produces (sonraki editör task'ları bunları kullanır):
   - `DictInput({ label, value: Dict, onChange: (Dict) => void, textarea?: boolean, rows?: number })`
   - `TextInput({ label, value: string, onChange: (string) => void })`
-  - `LinesInput({ label, value: string[], onChange: (string[]) => void, placeholder? })` — textarea, satır başına bir öğe
-  - `CommaInput({ label, value: string[], onChange: (string[]) => void })` — virgülle ayrılmış
+  - `LinesInput({ label, value: string[], onChange: (string[]) => void, placeholder? })` | textarea, satır başına bir öğe
+  - `CommaInput({ label, value: string[], onChange: (string[]) => void })` | virgülle ayrılmış
   - `Checkbox({ label, checked, onChange })`
   - `ArrayControls({ onUp?, onDown?, onRemove })`
-  - `Panel({ title, children })` — `<details>` tabanlı katlanır kart
+  - `Panel({ title, children })` | `<details>` tabanlı katlanır kart
 
-- [ ] **Step 1: Failing test yaz — test/admin-fields.test.tsx**
+- [ ] **Step 1: Failing test yaz | test/admin-fields.test.tsx**
 
 ```tsx
 import { render, screen } from '@testing-library/react'
@@ -1195,7 +1195,7 @@ test('CommaInput maps comma separated text to array', async () => {
 - [ ] **Step 2: Testin fail ettiğini doğrula**
 
 Run: `pnpm test test/admin-fields.test.tsx`
-Expected: FAIL — modül yok
+Expected: FAIL | modül yok
 
 - [ ] **Step 3: src/admin/fields.tsx yaz**
 
@@ -1381,7 +1381,7 @@ git commit -m "feat: admin form field components for dict, list and array contro
 
 **Interfaces:**
 - Consumes: `Panel, DictInput, TextInput, LinesInput, CommaInput, Checkbox, ArrayControls` (Task 7); `Project`, `ContentDocument` (Task 1)
-- Produces: `ProjectsEditor({ doc, setDoc }: { doc: ContentDocument; setDoc: (doc: ContentDocument) => void })` — AdminApp bu imzayla monteler.
+- Produces: `ProjectsEditor({ doc, setDoc }: { doc: ContentDocument; setDoc: (doc: ContentDocument) => void })` | AdminApp bu imzayla monteler.
 
 - [ ] **Step 1: src/admin/sections/ProjectsEditor.tsx yaz**
 
@@ -1443,8 +1443,8 @@ export function ProjectsEditor({ doc, setDoc }: { doc: ContentDocument; setDoc: 
           <DictInput label="Açıklama" value={project.description} onChange={(v) => update(index, { description: v })} />
           <DictInput label="Detay metni (opsiyonel)" value={project.detail ?? { tr: '', en: '' }} textarea rows={6} onChange={(v) => update(index, { detail: v.tr || v.en ? v : undefined })} />
           <DictInput label="Metrik (opsiyonel)" value={project.metric ?? { tr: '', en: '' }} onChange={(v) => update(index, { metric: v.tr || v.en ? v : undefined })} />
-          <LinesInput label="Öne çıkanlar — satır başına bir madde (opsiyonel)" value={project.highlights?.tr ?? []} placeholder={'Modbus veri toplama\nERP senkronizasyonu'} onChange={(tr) => update(index, { highlights: { tr, en: project.highlights?.en ?? [] } })} />
-          <LinesInput label="Highlights — one per line (EN, opsiyonel)" value={project.highlights?.en ?? []} onChange={(en) => update(index, { highlights: { tr: project.highlights?.tr ?? [], en } })} />
+          <LinesInput label="Öne çıkanlar | satır başına bir madde (opsiyonel)" value={project.highlights?.tr ?? []} placeholder={'Modbus veri toplama\nERP senkronizasyonu'} onChange={(tr) => update(index, { highlights: { tr, en: project.highlights?.en ?? [] } })} />
+          <LinesInput label="Highlights | one per line (EN, opsiyonel)" value={project.highlights?.en ?? []} onChange={(en) => update(index, { highlights: { tr: project.highlights?.tr ?? [], en } })} />
           <div className="grid gap-4 md:grid-cols-2">
             <CommaInput label="Stack" value={project.stack} onChange={(stack) => update(index, { stack })} />
             <div className="grid gap-4">
@@ -1473,7 +1473,7 @@ import { ProjectsEditor } from './sections/ProjectsEditor'
 <Route path="projects" element={<ProjectsEditor doc={doc} setDoc={setDoc} />} />
 ```
 
-Diğer section'lar placeholder olarak kalsın — `SECTIONS`'tan projects çıkarılıp ayrı yazılır:
+Diğer section'lar placeholder olarak kalsın | `SECTIONS`'tan projects çıkarılıp ayrı yazılır:
 
 ```tsx
 const OTHER_SECTIONS = [
@@ -1509,7 +1509,7 @@ git commit -m "feat: projects editor with reorder, add and remove"
 
 **Interfaces:**
 - Consumes: Task 7 field'ları, Task 1 tipleri
-- Produces: `ExperienceEditor({ doc, setDoc })`, `SkillsEditor({ doc, setDoc })`, `EducationEditor({ doc, setDoc })` — hepsi Task 8'deki `ProjectsEditor` ile aynı imza.
+- Produces: `ExperienceEditor({ doc, setDoc })`, `SkillsEditor({ doc, setDoc })`, `EducationEditor({ doc, setDoc })` | hepsi Task 8'deki `ProjectsEditor` ile aynı imza.
 
 - [ ] **Step 1: ExperienceEditor yaz**
 
@@ -1552,8 +1552,8 @@ export function ExperienceEditor({ doc, setDoc }: { doc: ContentDocument; setDoc
             <TextInput label="Şirket" value={item.company} onChange={(v) => update(index, { company: v })} />
           </div>
           <DictInput label="Pozisyon" value={item.role} onChange={(v) => update(index, { role: v })} />
-          <LinesInput label="Maddeler (TR) — satır başına bir tane" value={item.points.tr} onChange={(tr) => update(index, { points: { ...item.points, tr } })} />
-          <LinesInput label="Points (EN) — one per line" value={item.points.en} onChange={(en) => update(index, { points: { ...item.points, en } })} />
+          <LinesInput label="Maddeler (TR) | satır başına bir tane" value={item.points.tr} onChange={(tr) => update(index, { points: { ...item.points, tr } })} />
+          <LinesInput label="Points (EN) | one per line" value={item.points.en} onChange={(en) => update(index, { points: { ...item.points, en } })} />
           <div className="flex justify-end">
             <ArrayControls onUp={index > 0 ? () => move(index, -1) : undefined} onDown={index < items.length - 1 ? () => move(index, 1) : undefined} onRemove={() => setDoc({ ...doc, experience: items.filter((_, i) => i !== index) })} />
           </div>
@@ -1700,7 +1700,7 @@ git commit -m "feat: experience, skills and education editors"
 
 **Files:**
 - Create: `src/admin/sections/SiteEditor.tsx`, `AboutEditor.tsx`
-- Modify: `src/admin/AdminApp.tsx` — `Placeholder` tamamen silinir
+- Modify: `src/admin/AdminApp.tsx` | `Placeholder` tamamen silinir
 
 **Interfaces:**
 - Consumes: Task 7 field'ları, Task 1 tipleri
@@ -1843,7 +1843,7 @@ EXPOSE 3000
 CMD ["pnpm", "start"]
 ```
 
-Not: `tsx` runtime'da gerekli olduğu için prod install'da devDependency'ler düşürülmemeli — `--prod` yerine tam install kullan:
+Not: `tsx` runtime'da gerekli olduğu için prod install'da devDependency'ler düşürülmemeli | `--prod` yerine tam install kullan:
 
 ```dockerfile
 RUN pnpm install --frozen-lockfile
@@ -1898,7 +1898,7 @@ pnpm dev:server   # API :8787 (varsayılan şifre: admin)
 pnpm dev          # Vite :5173, /api proxy'si :8787'e
 ```
 
-Panel: `http://localhost:5173/#/admin` — şifre env'den gelir
+Panel: `http://localhost:5173/#/admin` | şifre env'den gelir
 (`ADMIN_PASSWORD` veya `ADMIN_PASSWORD_HASH` yoksa `admin`).
 
 ### Üretim (Docker)
@@ -1964,5 +1964,5 @@ Expected: çalışma dizini temiz (tüm task'lar commit'lenmiş)
 ## Self-Review Notları
 
 - **Spec coverage:** content.ts'teki her alan (site, profile, aboutTags, skillGroups, projects, experience, education) → Task 1 (tip) + Task 8-10 (editörler). Auth (bcrypt+JWT+cookie+rate limit) → Task 3. Zod validasyon → Task 4. Fallback → Task 5. Docker → Task 11. Hepsi karşılanıyor.
-- **Placeholder scan:** Task 6'daki `Placeholder` bileşeni geçici bir UI öğesidir (Task 8-10'da gerçek editörlerle değiştirilir) — plan eksik bırakma değil, kademeli geliştirme adımı.
+- **Placeholder scan:** Task 6'daki `Placeholder` bileşeni geçici bir UI öğesidir (Task 8-10'da gerçek editörlerle değiştirilir) | plan eksik bırakma değil, kademeli geliştirme adımı.
 - **Type consistency:** `AdminSection` tipi tanımlı ama kullanılmıyor olabilir; editör imzaları `{ doc, setDoc }` olarak tüm task'larda tutarlı. `createApp(config)` Task 2'de tanımlanır, Task 3-4 aynı imzayla genişletir.

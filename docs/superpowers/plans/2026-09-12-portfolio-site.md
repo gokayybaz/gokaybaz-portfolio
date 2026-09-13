@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - Package manager: pnpm (check availability; fall back to npm if pnpm missing)
-- All user-facing strings exist in both `tr` and `en` — no hardcoded copy in components
+- All user-facing strings exist in both `tr` and `en` | no hardcoded copy in components
 - Accent colors: terminal green `#4ade80`, amber secondary, on dark ground `#0a0e14`
 - Fonts: Space Grotesk (headings), JetBrains Mono (mono accents) via Google Fonts
 - Router: `HashRouter` from react-router v7
@@ -72,7 +72,7 @@ pnpm create vite . --template react-ts   # if pnpm missing: npm create vite@late
 pnpm install
 ```
 
-Run in the project root (only `.agents/`, `docs/`, `test/`-adjacent files exist; Vite scaffolds into non-empty dir — confirm overwrite prompts are skipped; if Vite refuses non-empty dir, scaffold into a temp dir and move files in).
+Run in the project root (only `.agents/`, `docs/`, `test/`-adjacent files exist; Vite scaffolds into non-empty dir | confirm overwrite prompts are skipped; if Vite refuses non-empty dir, scaffold into a temp dir and move files in).
 
 - [ ] **Step 2: Install dependencies**
 
@@ -249,7 +249,7 @@ test('restores lang from localStorage', () => {
 - [ ] **Step 2: Run test to verify it fails**
 
 Run: `npx vitest run test/LanguageContext.test.tsx`
-Expected: FAIL — module not found.
+Expected: FAIL | module not found.
 
 - [ ] **Step 3: Implement LanguageContext**
 
@@ -364,7 +364,7 @@ test('experience entries have points in both languages', () => {
 - [ ] **Step 2: Run test to verify it fails**
 
 Run: `npx vitest run test/content.test.ts`
-Expected: FAIL — module not found.
+Expected: FAIL | module not found.
 
 - [ ] **Step 3: Implement content.ts**
 
@@ -375,7 +375,7 @@ Full data from the research summary (see spec). Key content (write full Turkish 
 - **aboutTags**: `["TypeScript", "React", "Next.js", "Node.js", "Go", "PostgreSQL", "Prisma", "Proxmox VE", "Docker", "Dokploy", "WireGuard", "FortiGate"]`
 - **projects**:
   - `bazntms` (featured, github `https://github.com/gokayybaz/bazntms`): Ağ trafiği izleme sistemi; hub + 5.000'e kadar agent, eBPF/ETW/pcap paket yakalama, NetFlow/IPFIX/sFlow, SNMPv3, mTLS, RBAC, SIEM konektörleri (Splunk/QRadar), 5651 log imzalama. Stack: `["Go", "React", "SQLite", "PostgreSQL", "NATS", "Docker"]`. Highlights: tek binary dağıtım, self-hosted mimari, ISO 27001 uyum haritalaması.
-  - `binoga-ecommerce` (featured, no public repo — `demo` yok, github yok; case-study kartı): Binboğa Bal için solo geliştirilen kurumsal e-ticaret: Next.js + Node.js + PostgreSQL + Prisma + Amazon SES; QNBpay ödeme, DİA ERP entegrasyonu (WireGuard üzerinden özel Proxy API), DHL kargo, admin panel, RBAC + 2FA + audit log, Telegram log uyarıları, Dokploy ile kendi sunucusunda deploy. Stack: `["Next.js", "Node.js", "PostgreSQL", "Prisma", "Amazon SES", "Dokploy", "WireGuard"]`.
+  - `binoga-ecommerce` (featured, no public repo | `demo` yok, github yok; case-study kartı): Binboğa Bal için solo geliştirilen kurumsal e-ticaret: Next.js + Node.js + PostgreSQL + Prisma + Amazon SES; QNBpay ödeme, DİA ERP entegrasyonu (WireGuard üzerinden özel Proxy API), DHL kargo, admin panel, RBAC + 2FA + audit log, Telegram log uyarıları, Dokploy ile kendi sunucusunda deploy. Stack: `["Next.js", "Node.js", "PostgreSQL", "Prisma", "Amazon SES", "Dokploy", "WireGuard"]`.
   - `baz-eshop` (github + demo `https://baz-e-shop.netlify.app`): giyim e-ticaret vitrini. Stack: `["React", "Redux", "React Router", "Tailwind", "Vite"]`
   - `valorant-app` (github `https://github.com/gokayybaz/baz_valorant_app`): Valorant rehber uygulaması. Stack: `["React", "Vite", "Axios"]`
   - `filmgezegeni` (github `https://github.com/gokayybaz/filmgezegeni`): film keşif uygulaması. Stack: `["React", "Vite", "pnpm"]`
@@ -399,14 +399,14 @@ git add -A && git commit -m "feat: bilingual content data with projects and expe
 
 ---
 
-### Task 4: Layout primitives — Reveal wrapper + useReveal hook
+### Task 4: Layout primitives | Reveal wrapper + useReveal hook
 
 **Files:**
 - Create: `src/hooks/useReveal.ts`, `src/components/Reveal.tsx`
 - Test: `test/useReveal.test.tsx`
 
 **Interfaces:**
-- Produces: `useReveal<T extends HTMLElement>(): { ref: RefObject<T | null>, visible: boolean }` — sets `visible=true` once when the element enters viewport (threshold 0.15, unobserve after). `Reveal` component: `<Reveal delay?: number>` wrapper div with classes `opacity-0 translate-y-6` → `opacity-100 translate-y-0 transition-all duration-700`, `style={{ transitionDelay: delay + 'ms' }}`.
+- Produces: `useReveal<T extends HTMLElement>(): { ref: RefObject<T | null>, visible: boolean }` | sets `visible=true` once when the element enters viewport (threshold 0.15, unobserve after). `Reveal` component: `<Reveal delay?: number>` wrapper div with classes `opacity-0 translate-y-6` → `opacity-100 translate-y-0 transition-all duration-700`, `style={{ transitionDelay: delay + 'ms' }}`.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -428,7 +428,7 @@ test('Reveal renders children with hidden initial classes', () => {
 - [ ] **Step 2: Run test to verify it fails**
 
 Run: `npx vitest run test/useReveal.test.tsx`
-Expected: FAIL — module not found.
+Expected: FAIL | module not found.
 
 - [ ] **Step 3: Implement hook + component**
 
@@ -502,7 +502,7 @@ git add -A && git commit -m "feat: reveal-on-scroll primitive with IntersectionO
 
 **Interfaces:**
 - Consumes: `useLanguage`, `site` from content, `Reveal`
-- Produces: `Header` — fixed top bar with `~/gokaybaz` path accent, nav links (anchors `#about #projects #experience #contact`), TR/EN toggle button, green status dot + `open to work` label. `NetworkCanvas` — full-bleed canvas, ~60 drifting particles connected by lines when closer than 120px, colors from `#4ade80` at low alpha, respects `prefers-reduced-motion`. `Hero` — `$ whoami` typed-text animation (simple interval typing), large name in mono, title Dict, social icon links (inline SVGs), scroll hint.
+- Produces: `Header` | fixed top bar with `~/gokaybaz` path accent, nav links (anchors `#about #projects #experience #contact`), TR/EN toggle button, green status dot + `open to work` label. `NetworkCanvas` | full-bleed canvas, ~60 drifting particles connected by lines when closer than 120px, colors from `#4ade80` at low alpha, respects `prefers-reduced-motion`. `Hero` | `$ whoami` typed-text animation (simple interval typing), large name in mono, title Dict, social icon links (inline SVGs), scroll hint.
 
 - [ ] **Step 1: NetworkCanvas implementation**
 
@@ -693,7 +693,7 @@ BlogTeaser: bordered box, mono text `{ tr: 'blog yakında...', en: 'blog coming 
 
 - [ ] **Step 5: Assemble HomePage**
 
-Order: Header, Hero, About, Projects, Experience, BlogTeaser, Footer — each section wrapped in `<Reveal>` with incremental delay, `max-w-5xl mx-auto px-6 py-24`.
+Order: Header, Hero, About, Projects, Experience, BlogTeaser, Footer | each section wrapped in `<Reveal>` with incremental delay, `max-w-5xl mx-auto px-6 py-24`.
 
 - [ ] **Step 6: Verify + commit**
 
@@ -756,7 +756,7 @@ test('redirects unknown slug to home', () => {
 - [ ] **Step 2: Run test to verify it fails**
 
 Run: `npx vitest run test/ProjectDetailPage.test.tsx`
-Expected: FAIL — module not found.
+Expected: FAIL | module not found.
 
 - [ ] **Step 3: Implement ProjectDetailPage**
 
@@ -811,7 +811,7 @@ export default function ProjectDetailPage() {
 }
 ```
 
-NOTE: the highlights line above is intentionally awkward — implement cleanly instead: use `const { lang, t } = useLanguage()` and `project.highlights[lang].map(...)`. Do not copy that expression verbatim.
+NOTE: the highlights line above is intentionally awkward | implement cleanly instead: use `const { lang, t } = useLanguage()` and `project.highlights[lang].map(...)`. Do not copy that expression verbatim.
 
 - [ ] **Step 4: Add route**
 
@@ -850,8 +850,8 @@ git add -A && git commit -m "feat: project detail pages with slug routing and 40
 ### Task 8: Test cleanup + final verification
 
 **Files:**
-- Modify: move `src/App.test.tsx` → `test/App.test.tsx`; update its import to render full app through `main`-equivalent tree (LanguageProvider + HashRouter already inside App if Task 5 wired them — assert section anchors render)
-- Modify: `README.md` — brief run/test instructions
+- Modify: move `src/App.test.tsx` → `test/App.test.tsx`; update its import to render full app through `main`-equivalent tree (LanguageProvider + HashRouter already inside App if Task 5 wired them | assert section anchors render)
+- Modify: `README.md` | brief run/test instructions
 
 **Interfaces:**
 - Consumes: everything prior. No new APIs.
@@ -880,5 +880,5 @@ git add -A && git commit -m "chore: test cleanup, readme, final verification"
 ## Self-Review
 
 - **Spec coverage:** TR/EN toggle (T2), terminal/infra theme tokens (T1), all sections (T5–T6), project detail pages w/ HashRouter (T7), content data w/ live demos + featured flag (T3), reveal animations (T4), hero network effect (T5), unknown-slug redirect (T7), blog placeholder (T6), tests + build (all). Deploy: out of scope per spec. ✓
-- **Placeholder scan:** Task 5 Step 3 and Task 6 Steps 1/3/4 describe layouts without full code — these are visual components where the plan gives precise structure + class conventions; executor has tokens, data shapes, and one fully-coded exemplar (ProjectCard) to follow. Task 7 Step 3 includes a deliberate anti-pattern warning with the correct approach stated. Acceptable.
+- **Placeholder scan:** Task 5 Step 3 and Task 6 Steps 1/3/4 describe layouts without full code | these are visual components where the plan gives precise structure + class conventions; executor has tokens, data shapes, and one fully-coded exemplar (ProjectCard) to follow. Task 7 Step 3 includes a deliberate anti-pattern warning with the correct approach stated. Acceptable.
 - **Type consistency:** `useLanguage()` returns `{ lang, setLang, t }` used identically everywhere; `Project.detail?: Dict` consumed in T7; `ProjectCard` imports `Project` type; `highlights[lang]` pattern corrected in T7. ✓

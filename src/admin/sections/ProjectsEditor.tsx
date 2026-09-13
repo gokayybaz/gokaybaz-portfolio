@@ -110,13 +110,13 @@ export function ProjectsEditor({ doc, setDoc }: { doc: ContentDocument; setDoc: 
             onChange={(v) => update(index, { metric: v.tr || v.en ? v : undefined })}
           />
           <LinesInput
-            label="Öne çıkanlar — satır başına bir madde (TR, opsiyonel)"
+            label="Öne çıkanlar | satır başına bir madde (TR, opsiyonel)"
             value={project.highlights?.tr ?? []}
             placeholder={'Modbus veri toplama\nERP senkronizasyonu'}
             onChange={(tr) => update(index, { highlights: { tr, en: project.highlights?.en ?? [] } })}
           />
           <LinesInput
-            label="Highlights — one per line (EN, opsiyonel)"
+            label="Highlights | one per line (EN, opsiyonel)"
             value={project.highlights?.en ?? []}
             onChange={(en) => update(index, { highlights: { tr: project.highlights?.tr ?? [], en } })}
           />

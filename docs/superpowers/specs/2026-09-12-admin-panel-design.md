@@ -5,7 +5,7 @@
 
 ## Amaç
 
-Mevcut statik portfolyo sitesine admin paneli ekleyerek tüm içeriği (projeler, deneyim, skill grupları, education, hero/site bilgileri, about metni, about tag'leri, socials — yani `content.ts`'teki her şey) dinamik hale getirmek.
+Mevcut statik portfolyo sitesine admin paneli ekleyerek tüm içeriği (projeler, deneyim, skill grupları, education, hero/site bilgileri, about metni, about tag'leri, socials | yani `content.ts`'teki her şey) dinamik hale getirmek.
 
 ## Mimari: A Yaklaşımı
 
@@ -25,7 +25,7 @@ Mevcut statik portfolyo sitesine admin paneli ekleyerek tüm içeriği (projeler
          └──────── React Router ──┘
 ```
 
-- **Backend:** `server/` altında Express + TypeScript. Veri deposu SQLite değil, tek JSON dosyası (`server/data/content.json`) — içerik zaten tek doküman; dosya daha basit, yedeklemesi ve versiyonlaması kolay. Yazma işlemleri atomik (temp file + rename).
+- **Backend:** `server/` altında Express + TypeScript. Veri deposu SQLite değil, tek JSON dosyası (`server/data/content.json`) | içerik zaten tek doküman; dosya daha basit, yedeklemesi ve versiyonlaması kolay. Yazma işlemleri atomik (temp file + rename).
 - **Frontend (portfolyo):** Açılışta `GET /api/content` çeker, context'e koyar. API erişilemezse bundle'a gömülü mevcut `content.ts` verisi fallback olarak kullanılır. Böylece API çökse bile site çalışır.
 - **Admin:** Aynı SPA içinde `/admin` route'u (ayrı layout). Login ekranı → httpOnly cookie + JWT oturumu. CRUD formları TR/EN çift input'lu.
 - **Deploy:** Tek Docker container; Express hem API'yi hem build edilmiş SPA'yı servis eder. Kullanıcının kendi VPS'inde (Docker zaten alışkanlık).
@@ -62,11 +62,11 @@ interface ContentDocument {
 | `/api/admin/content` | PUT | cookie | İçerik dokümanını tamamen günceller, dosyaya yazar |
 
 - Auth: tek admin kullanıcısı, şifre env'de (`ADMIN_PASSWORD`), bcrypt ile hash'lenmiş hali karşılaştırılır. JWT httpOnly cookie (`admin_token`), ~12 saat TTL.
-- PUT tüm dokümanı alır (panel zaten tüm dokümanı editliyor) — partial patch karmaşıklığına gerek yok.
+- PUT tüm dokümanı alır (panel zaten tüm dokümanı editliyor) | partial patch karmaşıklığına gerek yok.
 
 ## Frontend Değişiklikleri
 
-- **ContentContext** (yeni): `useContent()` hook'u — API'den (veya fallback'ten) gelen `ContentDocument`'ı sağlar. Mevcut bileşenler `content.ts`'ten direkt import yerine bu hook'u kullanır.
+- **ContentContext** (yeni): `useContent()` hook'u | API'den (veya fallback'ten) gelen `ContentDocument`'ı sağlar. Mevcut bileşenler `content.ts`'ten direkt import yerine bu hook'u kullanır.
 - **Admin layout** (`/admin`): ayrı sidebar layout; portfolyo temasıyla uyumlu terminal-estetiği.
   - Login sayfası (`/admin/login`)
   - Dashboard: bölüm listesi
@@ -79,7 +79,7 @@ interface ContentDocument {
 
 - Şifre asla frontend'e gönderilmez; sadece bcrypt hash karşılaştırması server'da.
 - httpOnly + SameSite=Strict cookie; XSS ile cookie çalınamaz.
-- Content-Type: application/json zorunlu; PUT body'si `ContentDocument` şemasıyla validate edilir (zod — server'da yeni dependency).
+- Content-Type: application/json zorunlu; PUT body'si `ContentDocument` şemasıyla validate edilir (zod | server'da yeni dependency).
 - Rate limit login endpoint'ine (basit in-memory, 5 deneme/dk).
 
 ## Deploy
@@ -89,7 +89,7 @@ interface ContentDocument {
 
 ## Test
 
-- Backend: vitest — auth (login başarılı/başarısız, cookie, session), content GET/PUT (valid/invalid body), seed davranışı
+- Backend: vitest | auth (login başarılı/başarısız, cookie, session), content GET/PUT (valid/invalid body), seed davranışı
 - Frontend: ContentContext fallback testi (API yok → content.ts verisi), admin login formu render testi
 - Mevcut testler bozulmadan geçmeli (`pnpm test`)
 - `pnpm build` + `tsc -b` her task sonunda doğrulanır
@@ -99,5 +99,5 @@ interface ContentDocument {
 - Çok kullanıcılı sistem, rol yönetimi
 - Görsel/medya upload (avatar şu an `public/`'ten geliyor)
 - Blog içerik yönetimi (blog hâlâ "coming soon")
-- Redis/cache katmanı — tek instance, dosya okuması yeterince hızlı
+- Redis/cache katmanı | tek instance, dosya okuması yeterince hızlı
 - Versiyonlama/undo geçmişi (ileride istenirse content.json'a timestamp'li kopyalar yazılabilir)
