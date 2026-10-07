@@ -370,7 +370,7 @@ Expected: FAIL | module not found.
 
 Full data from the research summary (see spec). Key content (write full Turkish and English text, this is the real copy):
 
-- **site**: name "Gökay Baz"; title `{ tr: "Sistem Uzmanı & Full-Stack Yazılımcı", en: "IT Specialist & Full-Stack Developer" }`; socials: github `https://github.com/gokayybaz`, linkedin `https://www.linkedin.com/in/gokayybaz/`, x `https://x.com/gokayybaz1`, email `mailto:gokaybaz2000@gmail.com`, medium `https://medium.com/@gokaybaz2000`
+- **site**: name "Gökay Baz"; title `{ tr: "Sistem Uzmanı & Full-Stack Yazılımcı", en: "IT Specialist & Full-Stack Developer" }`; socials: github `https://github.com/gokayybaz`, linkedin `https://www.linkedin.com/in/gokayybaz/`, x `https://x.com/gokayybaz1`, email `mailto:gokaybaz@gokaybaz.com`, medium `https://medium.com/@gokaybaz2000`
 - **about** (TR): IT teknisyenliğinden başlayıp React ile web'e, oradan Next.js/Prisma ile full-stack'e ve bugün Go + eBPF/microVM gibi düşük seviye sistemlere uzanan "her zaman bir katman derine" hikayesi. Kendi altyapısını kendisi kurma felsefesi (Proxmox, Dokploy, WireGuard). (EN: same story in English.)
 - **aboutTags**: `["TypeScript", "React", "Next.js", "Node.js", "Go", "PostgreSQL", "Prisma", "Proxmox VE", "Docker", "Dokploy", "WireGuard", "FortiGate"]`
 - **projects**:

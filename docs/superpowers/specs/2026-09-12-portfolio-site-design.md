@@ -18,7 +18,7 @@ Gökay Baz'ın (Sistem Uzmanı & Full-Stack Yazılımcı, Binboğa Bal) kariyer/
   - **baz-eshop** | e-ticaret (React, Redux, Tailwind) | canlı: baz-e-shop.netlify.app
   - **baz_valorant_app** | Valorant rehber uygulaması (React + Vite)
   - **filmgezegeni** | film uygulaması (React + Vite)
-- **İletişim:** gokaybaz2000@gmail.com · github.com/gokayybaz · linkedin.com/in/gokayybaz · X: @gokayybaz1 · Medium: @gokaybaz2000
+- **İletişim:** gokaybaz@gokaybaz.com · github.com/gokayybaz · linkedin.com/in/gokayybaz · X: @gokayybaz1 · Medium: @gokaybaz2000
 
 ## Teknoloji
 
