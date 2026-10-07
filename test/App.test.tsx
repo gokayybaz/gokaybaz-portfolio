@@ -22,5 +22,5 @@ test('home renders hero name and project sections', () => {
   expect(screen.queryByText(/Vite \+ React ile/)).not.toBeInTheDocument()
   expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
   expect(screen.getByRole('navigation', { name: 'Ana navigasyon' })).toBeInTheDocument()
-  expect(screen.getByRole('link', { name: 'gokaybaz2000@gmail.com' })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: 'gokaybaz@gokaybaz.com' })).toBeInTheDocument()
 })

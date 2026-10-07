@@ -112,7 +112,7 @@ export const site: SiteContent = {
     github: 'https://github.com/gokayybaz',
     linkedin: 'https://www.linkedin.com/in/gokayybaz/',
     x: 'https://x.com/gokayybaz1',
-    email: 'mailto:gokaybaz2000@gmail.com',
+    email: 'mailto:gokaybaz@gokaybaz.com',
     phone: 'tel:+905445085479',
     medium: 'https://medium.com/@gokaybaz2000',
   } as Socials,

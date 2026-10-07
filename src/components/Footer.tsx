@@ -23,7 +23,7 @@ export function Footer() {
             href={site.socials.email}
             className="mt-2 inline-block break-all font-mono text-xl text-term hover:underline sm:text-4xl"
           >
-            gokaybaz2000@gmail.com
+            gokaybaz@gokaybaz.com
           </a>
           <div className="mt-3 flex flex-wrap gap-4 font-mono text-xs text-paper-dim">
             <a href={site.socials.phone} className="transition-colors hover:text-term">+90 544 508 54 79</a>
